@@ -10,7 +10,14 @@
 #define desmond_project_config_h
 
 #define TIMESTEP    15
+#define FIVE_MIN 60*5
+#define MINIMUM_TIME    60
+#define ONE_HOUR 60*60
+#define ONE_DAY 60*60*24
 
-#define INPUT_WINDOW   15
+#define LEVELS_UNDER_FIVE_MIN 3
+#define LEVELS_UNDER_HOUR 6
+
+#define INPUT_WINDOW   ONE_DAY
 
 #endif

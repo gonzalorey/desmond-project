@@ -110,12 +110,11 @@
 
 -(void)nextLevel{
     self.levelsPassed = self.levelsPassed + 1;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
     self.countdownDate = nil;
     self.codeTextField.text = @"";
     [self saveUserPreferences];
     [self establishCountdown];
-    
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
     
     int prevHighScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"DesmondHighScore"];
     
@@ -138,11 +137,12 @@
 {
     [super viewDidLoad];
 
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"intervalDate"];
+    //[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"intervalDate"];
     
     [self retrieveUserPreferences];
     
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    self.codeLabel.text = [NSString stringWithFormat:@"%d", self.clearanceCode];
     
     self.codeTextField.clearsOnBeginEditing = YES;
 
@@ -226,6 +226,8 @@
     if (!self.countdownDate) {
         //show Welcome screen
         [self showWelcomeScreen];
+    }else {
+        [self establishCountdown];
     }
 }
 
@@ -262,10 +264,11 @@
                 
             }
             [self saveUserPreferences];
-            [self updateCountdownLabel];
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
 
         }
+    
+    [self updateCountdownLabel];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
 }
 
 -(void)generateCode{
@@ -347,7 +350,17 @@
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
-    int x = (arc4random() % (TIMESTEP * (self.levelsPassed+1)))+TIMESTEP;
+    int offset;
+    
+    if (self.levelsPassed < LEVELS_UNDER_FIVE_MIN) {
+        offset = FIVE_MIN;
+    }else if (self.levelsPassed <= LEVELS_UNDER_HOUR) {
+       offset = ONE_HOUR;
+    }else {
+        offset = ONE_DAY;
+    }
+    
+    int x = (arc4random() % offset) + MINIMUM_TIME;
     return x;
 }
 
@@ -357,6 +370,7 @@
     
     [prefs setObject:self.countdownDate forKey:@"intervalDate"];
     [prefs setInteger:self.levelsPassed forKey:@"level"];
+    [prefs setInteger:self.clearanceCode forKey:@"clearCode"];
     [prefs synchronize];
 }
 
@@ -365,9 +379,11 @@
     
     int level = [prefs integerForKey:@"level"];
     NSDate * date = [prefs objectForKey:@"intervalDate"];
+    int clear = [prefs integerForKey:@"clearCode"];
     
     self.levelsPassed = level; 
     self.countdownDate = date;
+    self.clearanceCode = clear;
 }
 
 #pragma mark - GameKit
