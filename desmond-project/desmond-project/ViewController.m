@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "IAPHelper.h"
 
 @implementation ViewController
 
@@ -37,6 +38,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSSet *productIdentifiers = [NSSet setWithObjects: 
+                                 @"com.igvsoft.desmondproject.1reminder", 
+                                 nil];
+    
+    IAPHelper *iaph = [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers];
+    
+    if(iaph.products == nil) {
+        
+        NSLog(@"ABOUT TO SHOW THE STUFF...");
+        
+        [iaph requestProducts];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

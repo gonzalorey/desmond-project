@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0034F3231584867C003C2C57 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0034F3221584867C003C2C57 /* IAPHelper.m */; };
+		0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034F325158486C2003C2C57 /* StoreKit.framework */; };
 		C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1115845CBF00112790 /* UIKit.framework */; };
 		C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1315845CBF00112790 /* Foundation.framework */; };
 		C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1515845CBF00112790 /* CoreGraphics.framework */; };
@@ -19,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0034F3211584867C003C2C57 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		0034F3221584867C003C2C57 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		0034F325158486C2003C2C57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C006AE0D15845CBF00112790 /* desmond-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "desmond-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C006AE1115845CBF00112790 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C006AE1315845CBF00112790 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -41,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */,
+				0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */,
 				C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */,
 				C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */,
 				C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */,
@@ -53,6 +59,7 @@
 		C006AE0215845CBE00112790 = {
 			isa = PBXGroup;
 			children = (
+				0034F325158486C2003C2C57 /* StoreKit.framework */,
 				C006AE1715845CBF00112790 /* desmond-project */,
 				C006AE1015845CBF00112790 /* Frameworks */,
 				C006AE0E15845CBF00112790 /* Products */,
@@ -81,6 +88,8 @@
 		C006AE1715845CBF00112790 /* desmond-project */ = {
 			isa = PBXGroup;
 			children = (
+				0034F3211584867C003C2C57 /* IAPHelper.h */,
+				0034F3221584867C003C2C57 /* IAPHelper.m */,
 				C006AE2015845CBF00112790 /* AppDelegate.h */,
 				C006AE2115845CBF00112790 /* AppDelegate.m */,
 				C006AE2315845CBF00112790 /* ViewController.h */,
@@ -167,6 +176,7 @@
 				C006AE1E15845CBF00112790 /* main.m in Sources */,
 				C006AE2215845CBF00112790 /* AppDelegate.m in Sources */,
 				C006AE2515845CBF00112790 /* ViewController.m in Sources */,
+				0034F3231584867C003C2C57 /* IAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
