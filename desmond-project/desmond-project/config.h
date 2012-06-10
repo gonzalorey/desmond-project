@@ -20,4 +20,9 @@
 
 #define INPUT_WINDOW   ONE_DAY
 
+#define TICK_FILE_PATH  @"tick"
+#define STILL_ALIVE_FILE_PATH  @"stillAlive"
+#define SOUND_TYPE      @"wav"
+
+
 #endif
