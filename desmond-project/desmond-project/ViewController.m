@@ -81,9 +81,9 @@
 }
 
 -(void)nextLevel{
-    [self resetData];
-    self.countdownDate = nil;
     self.levelsPassed = self.levelsPassed + 1;
+    self.countdownDate = nil;
+    [self saveUserPreferences];
     [self establishCountdown];
     
 }
@@ -198,6 +198,7 @@
         if(self.countdownDate == nil)
         {
             [self retrieveUserPreferences];
+            NSLog(@"Levels> %d",self.levelsPassed);
             if(self.countdownDate == nil){
                 NSTimeInterval interval = [self generateNextRandomInterval];
                 [self generateCode];
@@ -210,7 +211,9 @@
 }
 
 -(void)generateCode{
-    self.clearanceCode = arc4random();
+    self.clearanceCode = arc4random() %10000000;
+    self.clearanceCode = abs(self.clearanceCode);
+    self.codeLabel.text = [NSString stringWithFormat:@"%d", self.clearanceCode];
 }
 
 -(void)updateCountdownLabel{
@@ -244,7 +247,7 @@
           [self.codeTextField setEnabled:TRUE];   
         }
         else{
-            [self.codeTextField setAlpha:0.5];
+            [self.codeTextField setAlpha:0.0];
             [self.codeTextField setEnabled:FALSE];
         }
 }
@@ -268,7 +271,7 @@
     [self resetData];    
 }
 
-- (void)didPresentAlertView:(UIAlertView *)alertView
+- (void)willPresentAlertView:(UIAlertView *)alertView
 {
     self.resetViewShown = true;
 }
