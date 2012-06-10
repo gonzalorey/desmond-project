@@ -15,7 +15,7 @@
 @implementation ViewController
 
 @synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer,
-    remindersLeftLabel, needHelpButton;
+    remindersLeftLabel, needHelpButton, deathToll;
 
 - (void)didReceiveMemoryWarning
 {
@@ -96,14 +96,70 @@
     [UIView commitAnimations];
 }
 
+-(void)checkForAchievements{
+    [self checkLifeAchievements];
+    [self checkDeathAchievements];
+
+}
+
+-(void)checkDeathAchievements
+{
+    int deathMilestones[] = {5, 10, 25, 50, 100, 1000};
+    for (int i = 0; i < sizeof(deathMilestones)/sizeof(int); i++){
+        if (self.deathToll == deathMilestones[i])
+            [self deathTollLevelAchieved:deathMilestones[i]];
+    }
+}
+
+-(void)checkLifeAchievements{
+    int levelMilestones[] = {5, 10, 25, 50, 100, 1000};
+    for(int i = 0; i < sizeof(levelMilestones)/sizeof(int); i++){
+        if(self.levelsPassed == levelMilestones[i] )
+            [self milestoneLevelAchieved:levelMilestones[i]];
+    }
+}
+
+-(void)checkBuzzerAchievements
+{
+
+    
+    NSDate * nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
+    
+    if (interval <= BUZZER_TIME) 
+        buzzer = YES;
+    else
+        buzzer = NO;
+    
+    if (buzzer == YES) 
+        NSLog(@"*** buzzer achieved");
+    
+    
+}
+
+-(void)milestoneLevelAchieved:(int)level{
+    NSLog(@"*** milestone level achieved: %i", level);
+}
+
+-(void)deathTollLevelAchieved:(int)level{
+    NSLog(@"*** deathToll level achieved: %i", level);
+}
+         
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
+    
     if([self checkCode]) {
+        [self checkBuzzerAchievements];
         [self nextLevel];
         AudioServicesPlaySystemSound(stillAliveSoundFileObject);
     } else
         [self endTheWorld];
+    
+    [self checkForAchievements];
     return YES;
 }
 
@@ -364,6 +420,8 @@
 
 -(void)endTheWorld
 {
+    self.deathToll += 1;
+    NSLog(@"deathToll: %i", self.deathToll);
     [self.timer invalidate];
     self.timer = nil;
     
@@ -425,6 +483,7 @@
     [prefs setObject:self.countdownDate forKey:@"intervalDate"];
     [prefs setInteger:self.levelsPassed forKey:@"level"];
     [prefs setInteger:self.clearanceCode forKey:@"clearCode"];
+    [prefs setInteger:self.deathToll forKey:@"deathToll"];
     [prefs synchronize];
 }
 
@@ -434,10 +493,12 @@
     int level = [prefs integerForKey:@"level"];
     NSDate * date = [prefs objectForKey:@"intervalDate"];
     int clear = [prefs integerForKey:@"clearCode"];
+    int deaths = [prefs integerForKey:@"deathToll"];
     
     self.levelsPassed = level; 
     self.countdownDate = date;
     self.clearanceCode = clear;
+    self.deathToll = deaths;
 }
 
 #pragma mark - GameKit

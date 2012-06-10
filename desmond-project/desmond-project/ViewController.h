@@ -25,6 +25,7 @@
     NSDate * countdownDate;
     int levelsPassed;
     int clearanceCode;
+    int deathToll;
     NSTimer * timer;
     Boolean resetViewShown;
     CGPoint codeTextFieldOriginalPosition;
@@ -42,6 +43,7 @@
 	SystemSoundID	deathSoundFileObject;
     
     IBOutlet UIButton * needHelpButton;
+    bool buzzer;
 }
 
 @property(nonatomic, retain) IBOutlet UIButton * needHelpButton;
@@ -59,6 +61,7 @@
 @property(nonatomic, retain) UILabel *remindersLeftLabel;
 @property(nonatomic, assign) int clearanceCode;
 @property(nonatomic, assign) Boolean invalidateTimer;
+@property(nonatomic, assign) int deathToll;
 
 -(void)establishCountdown;
 -(void)startCountdown;
@@ -78,4 +81,10 @@
 - (void)initSound;
 - (void) updateRemaindersLabel;
 -(void)designButtons;
+-(void)checkForAchievements;
+-(void)checkLifeAchievements;
+-(void)checkDeathAchievements;
+-(void)checkBuzzerAchievements;
+-(void)milestoneLevelAchieved:(int)level;
+-(void)deathTollLevelAchieved:(int)level;
 @end
