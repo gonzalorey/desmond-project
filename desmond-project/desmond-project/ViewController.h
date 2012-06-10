@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 #import "IAPHelper.h"
+#import "BoomViewController.h"
 
 @interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, UITextFieldDelegate>{
 
@@ -54,6 +55,7 @@
 -(void)endTheWorld;
 -(void)showResults;
 -(void)resetData;
+-(void)showWelcomeScreen;
 -(void)enableTextField:(NSTimeInterval)time;
 -(Boolean)checkCode;
 -(void)nextLevel;

@@ -111,7 +111,6 @@
 //	
     
     // Cells population
-    NSLog(@"y??? Que pasa?!?!?");
     
     static NSString *MyIdentifier = @"MyIdentifier";
 	

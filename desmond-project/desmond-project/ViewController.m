@@ -200,7 +200,7 @@
     wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     wel.delegate = self;
     
-    [self presentModalViewController:wel animated:YES];
+    [self presentModalViewController:wel animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -313,8 +313,10 @@
     self.invalidateTimer = YES;
     self.countdownLabel.text = @"BOOM";
     [self resetData];
+    BoomViewController *boomVC = [[BoomViewController alloc] initWithNibName:@"BoomViewController" bundle:nil];
 
-    [self showResults];
+    [self presentModalViewController:boomVC animated:NO];
+//    [self showResults];
 }
 
 -(void)showResults{
