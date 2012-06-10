@@ -68,7 +68,6 @@
 
 -(IBAction)startGame:(id)sender{
     [self.delegate establishCountdown];
-    
     [self.delegate dismissModalViewControllerAnimated:YES];
 }
 

@@ -27,6 +27,7 @@
     CGPoint codeTextFieldOriginalPosition;
     CGPoint codeLabelOriginalPosition;
     CGPoint codeNameLabelOriginalPosition;
+    Boolean invalidateTimer;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -41,8 +42,10 @@
 @property(nonatomic, retain) UILabel *promptLabel;
 @property(nonatomic, retain) UILabel *scoreLabel;
 @property(nonatomic, assign) int clearanceCode;
+@property(nonatomic, assign) Boolean invalidateTimer;
 
 -(void)establishCountdown;
+-(void)startCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
 -(void)updateCountdownLabel;
 -(void)saveUserPreferences;

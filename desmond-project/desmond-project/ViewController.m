@@ -14,7 +14,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer;
 
 - (void)didReceiveMemoryWarning
 {
@@ -215,7 +215,7 @@
         //show Welcome screen
         [self showWelcomeScreen];
     }else {
-        [self establishCountdown];
+        [self startCountdown];
     }
 }
 
@@ -239,24 +239,20 @@
     }
 }
 
--(void)establishCountdown{
-    
-        if(self.countdownDate == nil)
-        {
-            [self retrieveUserPreferences];
-            if(self.countdownDate == nil){
-                NSTimeInterval interval = [self generateNextRandomInterval];
-                [self generateCode];
-                self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
-
-                
-            }
-            [self saveUserPreferences];
-
-        }
-    
+-(void)startCountdown{
     [self updateCountdownLabel];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+    
+}
+
+-(void)establishCountdown{
+   
+    NSTimeInterval interval = [self generateNextRandomInterval];
+    [self generateCode];
+    self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
+    [self saveUserPreferences];
+    [self startCountdown];
+
 }
 
 -(void)generateCode{
@@ -267,12 +263,14 @@
 
 -(void)updateCountdownLabel{
     
+    if(invalidateTimer)
+        return;
     NSDate * nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSSecondCalendarUnit| NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit;
 
     NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
-    if(interval <= 0 )
+    if(interval <= 0 && countdownDate != nil)
     {
         [self endTheWorld];   
         return;
@@ -302,10 +300,14 @@
 
 -(void)endTheWorld
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    self.invalidateTimer = YES;
     self.countdownLabel.text = @"BOOM";
+    [self resetData];
+
     [self showResults];
-    self.countdownDate = nil;
-    [self saveUserPreferences];
 }
 
 -(void)showResults{
@@ -317,7 +319,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.codeTextField.text = @"";
-    [self resetData];
+    self.invalidateTimer = NO;
     [self showWelcomeScreen];
 }
 
@@ -330,11 +332,9 @@
 {
     self.countdownDate = nil;
     self.levelsPassed = 0;
-    self.resetViewShown = false;
-    [self.timer invalidate];
     [self saveUserPreferences];
-    
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    self.resetViewShown = false;    
+
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
