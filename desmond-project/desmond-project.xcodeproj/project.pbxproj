@@ -15,7 +15,6 @@
 		C006AE2215845CBF00112790 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2115845CBF00112790 /* AppDelegate.m */; };
 		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
 		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
-		C006AE2B15845CBF00112790 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2915845CBF00112790 /* ViewController_iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		C006AE2315845CBF00112790 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		C006AE2A15845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 				C006AE2315845CBF00112790 /* ViewController.h */,
 				C006AE2415845CBF00112790 /* ViewController.m */,
 				C006AE2615845CBF00112790 /* ViewController_iPhone.xib */,
-				C006AE2915845CBF00112790 /* ViewController_iPad.xib */,
 				C006AE1815845CBF00112790 /* Supporting Files */,
 			);
 			path = "desmond-project";
@@ -153,7 +150,6 @@
 			files = (
 				C006AE1C15845CBF00112790 /* InfoPlist.strings in Resources */,
 				C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */,
-				C006AE2B15845CBF00112790 /* ViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,14 +183,6 @@
 				C006AE2715845CBF00112790 /* en */,
 			);
 			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		C006AE2915845CBF00112790 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C006AE2A15845CBF00112790 /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -253,7 +241,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desmond-project/desmond-project-Prefix.pch";
 				INFOPLIST_FILE = "desmond-project/desmond-project-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -264,7 +254,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desmond-project/desmond-project-Prefix.pch";
 				INFOPLIST_FILE = "desmond-project/desmond-project-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -288,6 +280,7 @@
 				C006AE3015845CBF00112790 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
