@@ -225,6 +225,8 @@
 {
     self.countdownLabel.text = @"BOOM";
     [self showResults];
+    self.countdownDate = nil;
+    [self saveUserPreferences];
 }
 
 -(void)showResults{
