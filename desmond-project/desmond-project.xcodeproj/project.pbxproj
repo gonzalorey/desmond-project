@@ -22,6 +22,7 @@
 		C0F2A75A1584F2A60049E52D /* BoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F2A7581584F2A60049E52D /* BoomViewController.m */; };
 		C0F2A75B1584F2A60049E52D /* BoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A7591584F2A60049E52D /* BoomViewController.xib */; };
 		C0F2A75F1584FA3B0049E52D /* skull-head-danger-bones.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */; };
+		C0F2A76515851F330049E52D /* death.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A76415851F330049E52D /* death.m4a */; };
 		FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FC39120515850ECA007E0942 /* MBProgressHUD.m */; };
 		FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC40B8C115846BDD00EF23D4 /* GameKit.framework */; };
 		FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8CE1584B00700EF23D4 /* game-center-logo.png */; };
@@ -54,6 +55,7 @@
 		C0F2A7581584F2A60049E52D /* BoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoomViewController.m; sourceTree = "<group>"; };
 		C0F2A7591584F2A60049E52D /* BoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoomViewController.xib; sourceTree = "<group>"; };
 		C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "skull-head-danger-bones.jpg"; sourceTree = "<group>"; };
+		C0F2A76415851F330049E52D /* death.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = death.m4a; sourceTree = "<group>"; };
 		FC39120415850ECA007E0942 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		FC39120515850ECA007E0942 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FC40B8C115846BDD00EF23D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -138,6 +140,7 @@
 		C006AE1815845CBF00112790 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0F2A76415851F330049E52D /* death.m4a */,
 				C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */,
 				C006AE1915845CBF00112790 /* desmond-project-Info.plist */,
 				C006AE1A15845CBF00112790 /* InfoPlist.strings */,
@@ -205,6 +208,7 @@
 				00BB160B1584D0140043F58C /* StoreViewController.xib in Resources */,
 				C0F2A75B1584F2A60049E52D /* BoomViewController.xib in Resources */,
 				C0F2A75F1584FA3B0049E52D /* skull-head-danger-bones.jpg in Resources */,
+				C0F2A76515851F330049E52D /* death.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
