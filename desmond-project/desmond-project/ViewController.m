@@ -10,6 +10,8 @@
 
 @implementation ViewController
 
+@synthesize  countdownLabel, codeTextField;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
