@@ -118,4 +118,43 @@
     self.countdownDate = date;
 }
 
+#pragma mark - GameKit
+
+- (void) reportScore: (int64_t) score forCategory: (NSString*) category
+{
+    GKScore *scoreReporter = [[GKScore alloc] initWithCategory:category];
+    scoreReporter.value = score;
+    
+    [scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error authenticating: %@",[error localizedDescription]);
+        }else {
+            NSLog(@"no error");
+        }
+    }];
+}
+
+- (void) showLeaderboard
+{
+    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+    if (leaderboardController != nil)
+    {
+        leaderboardController.leaderboardDelegate = self;
+        [self presentModalViewController: leaderboardController animated: YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction)reportScoreButton:(id)sender{
+    [self reportScore:12 forCategory:@"com.igvsoft.desmondproject.savedworldleaderboard"];
+}
+
+-(IBAction)showLeaderboardButton:(id)sender{
+    [self showLeaderboard];
+}
+
 @end
