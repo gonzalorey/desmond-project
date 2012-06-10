@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+
+    IBOutlet UILabel * countdownLabel;
+    IBOutlet UITextField * codeTextField;
+}
+
+@property(nonatomic, retain) UILabel * countdownLabel;
+@property(nonatomic, retain) UITextField * codeTextField;
 
 @end
