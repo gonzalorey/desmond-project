@@ -48,4 +48,7 @@
 -(void)endTheWorld;
 -(void)showResults;
 -(void)resetData;
+-(void)enableTextField:(NSTimeInterval)time;
+-(Boolean)checkCode;
+-(void)nextLevel;
 @end

@@ -35,7 +35,6 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.3];
     [self.codeTextField setFrame:codeTextFieldFrame];
     [self.codeLabel setFrame:codeLabelFrame];
@@ -43,23 +42,14 @@
     [UIView commitAnimations];
 }
 
-//- (void) printElement:(UIView *)v
-//{
-//    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
-//}
 
 - (void)keyboardWillShow:(NSNotification *)n
 {   
     NSDictionary* userInfo = [n userInfo];
 
-//    // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    CGPoint keyboardOrigin = CGPointMake(0, 216);
 
-    CGRect codeTextFieldFrame = self.codeTextField.frame;
-
-//    NSLog(@"keyboard size: %@, origin: %@", NSStringFromCGSize(keyboardSize), NSStringFromCGPoint(keyboardOrigin));
-    
+    CGRect codeTextFieldFrame = self.codeTextField.frame;    
     codeTextFieldFrame.origin.y = keyboardSize.height-codeTextFieldFrame.size.height;
     
     CGRect codeLabelFrame = self.codeLabel.frame;
@@ -67,7 +57,6 @@
     
     codeLabelFrame.origin.y = codeTextFieldFrame.origin.y - codeLabelFrame.size.height;
     codeNameLabelFrame.origin.y = codeLabelFrame.origin.y;
-//    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];
@@ -80,12 +69,28 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
-    
+    if([self checkCode])
+        [self nextLevel];
+    else
+        [self endTheWorld];
     return YES;
+}
+
+-(Boolean)checkCode{
+    return [self.codeLabel.text isEqualToString:self.codeTextField.text];
+}
+
+-(void)nextLevel{
+    [self resetData];
+    self.countdownDate = nil;
+    self.levelsPassed = self.levelsPassed + 1;
+    [self establishCountdown];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.codeTextField.text = @"";
     // Dismiss the keyboard when the view outside the text field is touched.
     [self.codeTextField resignFirstResponder];
     [super touchesBegan:touches withEvent:event];
@@ -219,7 +224,8 @@
     {
         [self endTheWorld];   
         return;
-    }
+    }else
+        [self enableTextField:interval];
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:nowDate  toDate:self.countdownDate  options:0];
     
@@ -227,7 +233,20 @@
     NSString* formattedDate = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], 
                                [conversionInfo second]];
     
+    
     self.countdownLabel.text = formattedDate;
+}
+
+-(void)enableTextField:(NSTimeInterval)time{
+        if(time < INPUT_WINDOW)
+        {
+            [self.codeTextField setAlpha:1.0];
+          [self.codeTextField setEnabled:TRUE];   
+        }
+        else{
+            [self.codeTextField setAlpha:0.5];
+            [self.codeTextField setEnabled:FALSE];
+        }
 }
 
 -(void)endTheWorld
