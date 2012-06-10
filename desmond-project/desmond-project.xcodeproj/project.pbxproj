@@ -58,6 +58,8 @@
 		FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FC39120515850ECA007E0942 /* MBProgressHUD.m */; };
 		FC391209158516C8007E0942 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC391208158516C8007E0942 /* StoreCell.m */; };
 		FC39120B158516E0007E0942 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC39120A158516E0007E0942 /* StoreCell.xib */; };
+		FC39122715853FDC007E0942 /* desmond-logo-57.png in Resources */ = {isa = PBXBuildFile; fileRef = FC39122615853FDC007E0942 /* desmond-logo-57.png */; };
+		FC39122915853FE4007E0942 /* desmond-logo-114.png in Resources */ = {isa = PBXBuildFile; fileRef = FC39122815853FE4007E0942 /* desmond-logo-114.png */; };
 		FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC40B8C115846BDD00EF23D4 /* GameKit.framework */; };
 		FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8CE1584B00700EF23D4 /* game-center-logo.png */; };
 		FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40B8D61584B4D500EF23D4 /* WelcomeViewController.m */; };
@@ -127,6 +129,8 @@
 		FC391207158516C8007E0942 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
 		FC391208158516C8007E0942 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
 		FC39120A158516E0007E0942 /* StoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
+		FC39122615853FDC007E0942 /* desmond-logo-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "desmond-logo-57.png"; path = "../desmond-logo-57.png"; sourceTree = "<group>"; };
+		FC39122815853FE4007E0942 /* desmond-logo-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "desmond-logo-114.png"; path = "../desmond-logo-114.png"; sourceTree = "<group>"; };
 		FC40B8C115846BDD00EF23D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FC40B8CE1584B00700EF23D4 /* game-center-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-center-logo.png"; sourceTree = "<group>"; };
 		FC40B8D51584B4D500EF23D4 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 		C006AE1815845CBF00112790 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC39122815853FE4007E0942 /* desmond-logo-114.png */,
+				FC39122615853FDC007E0942 /* desmond-logo-57.png */,
 				C0F2A76415851F330049E52D /* death.m4a */,
 				C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */,
 				C006AE1915845CBF00112790 /* desmond-project-Info.plist */,
@@ -363,6 +369,8 @@
 				C08A9D0415853A2800600439 /* whiteButton@2x.png in Resources */,
 				C08A9D0515853A2800600439 /* whiteButtonHighlight.png in Resources */,
 				C08A9D0615853A2800600439 /* whiteButtonHighlight@2x.png in Resources */,
+				FC39122715853FDC007E0942 /* desmond-logo-57.png in Resources */,
+				FC39122915853FE4007E0942 /* desmond-logo-114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
