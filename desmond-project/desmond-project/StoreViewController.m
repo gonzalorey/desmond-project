@@ -10,7 +10,7 @@
 
 @implementation StoreViewController
 
-@synthesize inAppPurchasesTableView = _inAppPurchasesTableView, iapHelper = _iapHelper;
+@synthesize inAppPurchasesTableView = _inAppPurchasesTableView, iapHelper = _iapHelper, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,20 +46,37 @@
         [self.iapHelper requestProducts];
     }
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismiss)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    self.title = @"Store";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTableView) name:kProductsLoadedNotification object:nil];
+}
+
+- (void)dismiss
+{
+    [self.delegate dismissModalViewControllerAnimated:TRUE];
 }
 
 - (void)loadTableView
 {
-    // Initialization of the tableView
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame
-                                                          style:UITableViewStylePlain];
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView reloadData];
+//    NSLog(@"height:%fpx width:%fpx", 
+//          self.uiNavBar.frame.size.height, 
+//          self.uiNavBar.frame.size.width);
     
-    [self.view addSubview:tableView];
+    // Initialization of the tableView
+//    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,44, 320, 320)
+//                                                          style:UITableViewStylePlain];
+//    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+//    tableView.delegate = self;
+//    tableView.dataSource = self;
+//    [tableView reloadData];
+//    
+//    [self.view addSubview:tableView];
+
+    [uiTableView reloadData];
 }
 
 - (void)viewDidUnload

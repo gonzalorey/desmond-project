@@ -403,10 +403,13 @@
 - (void) showInAppPurchaseOptions
 {
     StoreViewController *storeViewController = [[StoreViewController alloc] initWithNibName:@"StoreViewController" bundle:nil];
-    
+                                            
     if(storeViewController != Nil)
     {
-        [self presentModalViewController:storeViewController animated:TRUE];
+        storeViewController.delegate = self;
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:storeViewController];
+        [self presentModalViewController:nav animated:TRUE];
     }
 }
 
