@@ -91,10 +91,26 @@ static IAPHelper * _sharedHelper;
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     
-//    NSLog(@"Received products results...");   
-    self.products = response.products;
-    
-//    NSLog(@"Products fetch: %d", [response.products count]);
+    self.products = [response.products sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        SKProduct * prod1 = obj1;
+        SKProduct * prod2 = obj2;
+        
+        // Parse the purchased remainders from the response
+        NSArray *tokens = [prod1.productIdentifier componentsSeparatedByString: @"."];
+        int num1 = [[tokens objectAtIndex:[tokens count] - 1] intValue];
+        
+        tokens = [prod2.productIdentifier componentsSeparatedByString: @"."];
+        int num2 = [[tokens objectAtIndex:[tokens count] - 1] intValue];
+        
+        if (num1 < num2) {
+            return NSOrderedAscending;
+        }else {
+            return NSOrderedDescending;
+        }
+        
+        return [prod1.productIdentifier compare:prod2.productIdentifier];
+        
+    }];
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
     {
@@ -107,10 +123,8 @@ static IAPHelper * _sharedHelper;
 //        NSLog(@"Product price: %@" , [self localizedPrice:p.price inLocale:p.priceLocale]);
 //        NSLog(@"Product id: %@" , p.productIdentifier);
     }
-    
-//    NSLog(@"They should have been printed so far...");
 
-    self.request = nil;    
+    self.request = nil;
     
     [MBProgressHUD hideWaitAlertInView:self.waitView];
     

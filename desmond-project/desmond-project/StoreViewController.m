@@ -164,7 +164,9 @@
     [numberFormatter setLocale:product.priceLocale];
     NSString *formattedString = [numberFormatter stringFromNumber:product.price];
     
-    cell.reminderNumberLabel.text = [product.localizedTitle substringFromIndex:1];
+    NSArray *tokens = [product.productIdentifier componentsSeparatedByString: @"."];
+    
+    cell.reminderNumberLabel.text = [tokens objectAtIndex:[tokens count] - 1];
     cell.buyButton.titleLabel.text = formattedString;
     [cell.buyButton setTitle:formattedString forState:UIControlStateNormal];
     [cell.buyButton setTitle:formattedString forState:UIControlStateHighlighted];
@@ -195,6 +197,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    StoreCell * cell = (StoreCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    [self buyButtonTapped:cell.buyButton];
 }
 
 @end
