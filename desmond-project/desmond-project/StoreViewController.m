@@ -10,7 +10,7 @@
 
 @implementation StoreViewController
 
-@synthesize inAppPurchasesTableView = _inAppPurchasesTableView, iapHelper = _iapHelper, delegate;
+@synthesize inAppPurchasesTableView = _inAppPurchasesTableView, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,14 +36,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSSet *productIdentifiers = [NSSet setWithObjects: 
-                                 @"com.igvsoft.desmondproject.1reminder", 
-                                 nil];
-    
-    self.iapHelper = [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers];
-    
-    if(self.iapHelper.products == nil) {
-        [self.iapHelper requestProducts];
+    if([IAPHelper sharedHelper].products == nil) {
+        [[IAPHelper sharedHelper] requestProducts:self.view];
     }
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismiss)];
@@ -52,7 +46,12 @@
     
     self.title = @"Store";
     
+    // Set the notification to be triggered after the products were loaded
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadTableView) name:kProductsLoadedNotification object:nil];
+    
+    // Set the notifications to be triggered after a buy event
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:kProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(productPurchaseFailed:) name:kProductPurchaseFailedNotification object: nil];
 }
 
 - (void)dismiss
@@ -62,21 +61,7 @@
 
 - (void)loadTableView
 {
-//    NSLog(@"height:%fpx width:%fpx", 
-//          self.uiNavBar.frame.size.height, 
-//          self.uiNavBar.frame.size.width);
-    
-    // Initialization of the tableView
-//    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,44, 320, 320)
-//                                                          style:UITableViewStylePlain];
-//    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-//    tableView.delegate = self;
-//    tableView.dataSource = self;
-//    [tableView reloadData];
-//    
-//    [self.view addSubview:tableView];
-
-    [uiTableView reloadData];
+    [uiTableView reloadData];    
 }
 
 - (void)viewDidUnload
@@ -84,6 +69,34 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)productPurchased:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    NSString *productIdentifier = (NSString *) notification.object;
+    NSLog(@"Purchased: %@", productIdentifier);
+    
+    [uiTableView reloadData];    
+    
+}
+
+- (void)productPurchaseFailed:(NSNotification *)notification {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    SKPaymentTransaction * transaction = (SKPaymentTransaction *) notification.object;    
+    if (transaction.error.code != SKErrorPaymentCancelled) {    
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" 
+                                                         message:transaction.error.localizedDescription 
+                                                        delegate:nil 
+                                               cancelButtonTitle:nil 
+                                               otherButtonTitles:@"OK", nil];
+        
+        [alert show];
+    }
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -94,8 +107,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {    
-    NSLog(@"COUNT:%d", [self.iapHelper.products count]);
-    return [self.iapHelper.products count];
+    NSLog(@"COUNT:%d", [[IAPHelper sharedHelper].products count]);
+    return [[IAPHelper sharedHelper].products count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,7 +135,7 @@
 //    cell.textLabel.text = @"SARASA";
     
     // Set up the cell.
-    SKProduct *product = [self.iapHelper.products objectAtIndex:indexPath.row];
+    SKProduct *product = [[IAPHelper sharedHelper].products objectAtIndex:indexPath.row];
     
 //    NSLog(@"Product title: %@" , p.localizedTitle);
 //    NSLog(@"Product description: %@" , p.localizedDescription);
@@ -139,7 +152,7 @@
     cell.textLabel.text = product.localizedTitle;
     cell.detailTextLabel.text = formattedString;
     
-    if ([self.iapHelper.purchasedProducts containsObject:product.productIdentifier]) {
+    if ([[IAPHelper sharedHelper].purchasedProducts containsObject:product.productIdentifier]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.accessoryView = nil;
     } else {        
@@ -153,6 +166,15 @@
     }	
     
     return cell;
+}
+
+- (IBAction)buyButtonTapped:(id)sender {
+    
+    UIButton *buyButton = (UIButton *)sender;    
+    SKProduct *product = [[IAPHelper sharedHelper].products objectAtIndex:buyButton.tag];
+    
+    NSLog(@"Buying %@...", product.productIdentifier);
+    [[IAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
 }
 
 @end

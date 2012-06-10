@@ -13,14 +13,11 @@
 @interface StoreViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView * _inAppPurchasesTableView;
-    IAPHelper * _iapHelper;
     IBOutlet UITableView *uiTableView;
     ViewController *delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *inAppPurchasesTableView;
-@property (nonatomic, retain) IAPHelper *iapHelper;
 @property (nonatomic, retain) ViewController *delegate;
-
 
 @end
