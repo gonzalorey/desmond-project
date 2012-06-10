@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "IAPHelper.h"
+#import "config.h"
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph, promptLabel, topMessage, scoreLabel;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph,clearanceCode, promptLabel, topMessage, scoreLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,6 +57,7 @@
     [UIView commitAnimations];
 }
 
+
 - (void)keyboardWillShow:(NSNotification *)n
 {   
     NSDictionary* userInfo = [n userInfo];
@@ -63,6 +65,7 @@
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     int slideAmount = keyboardSize.height/2;
+
     
     CGRect codeLabelFrame = self.codeLabel.frame;
     CGRect codeNameLabelFrame = self.codeNameLabel.frame;
@@ -93,12 +96,28 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
-    
+    if([self checkCode])
+        [self nextLevel];
+    else
+        [self endTheWorld];
     return YES;
+}
+
+-(Boolean)checkCode{
+    return [self.codeLabel.text isEqualToString:self.codeTextField.text];
+}
+
+-(void)nextLevel{
+    self.levelsPassed = self.levelsPassed + 1;
+    self.countdownDate = nil;
+    [self saveUserPreferences];
+    [self establishCountdown];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.codeTextField.text = @"";
     // Dismiss the keyboard when the view outside the text field is touched.
     [self.codeTextField resignFirstResponder];
     [super touchesBegan:touches withEvent:event];
@@ -206,14 +225,22 @@
         if(self.countdownDate == nil)
         {
             [self retrieveUserPreferences];
+            NSLog(@"Levels> %d",self.levelsPassed);
             if(self.countdownDate == nil){
                 NSTimeInterval interval = [self generateNextRandomInterval];
+                [self generateCode];
                 self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
             }
             [self saveUserPreferences];
             [self updateCountdownLabel];
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
         }
+}
+
+-(void)generateCode{
+    self.clearanceCode = arc4random() %10000000;
+    self.clearanceCode = abs(self.clearanceCode);
+    self.codeLabel.text = [NSString stringWithFormat:@"%d", self.clearanceCode];
 }
 
 -(void)updateCountdownLabel{
@@ -227,7 +254,8 @@
     {
         [self endTheWorld];   
         return;
-    }
+    }else
+        [self enableTextField:interval];
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:nowDate  toDate:self.countdownDate  options:0];
     
@@ -235,7 +263,20 @@
     NSString* formattedDate = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], 
                                [conversionInfo second]];
     
+    
     self.countdownLabel.text = formattedDate;
+}
+
+-(void)enableTextField:(NSTimeInterval)time{
+        if(time < INPUT_WINDOW)
+        {
+            [self.codeTextField setAlpha:1.0];
+          [self.codeTextField setEnabled:TRUE];   
+        }
+        else{
+            [self.codeTextField setAlpha:0.0];
+            [self.codeTextField setEnabled:FALSE];
+        }
 }
 
 -(void)endTheWorld
@@ -257,10 +298,11 @@
     [self resetData];    
 }
 
-- (void)didPresentAlertView:(UIAlertView *)alertView
+- (void)willPresentAlertView:(UIAlertView *)alertView
 {
     self.resetViewShown = true;
 }
+
 -(void)resetData
 {
     self.countdownDate = nil;
@@ -272,9 +314,10 @@
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
-    int x = arc4random() % 15;
+    int x = (arc4random() % (TIMESTEP * (self.levelsPassed+1)))+TIMESTEP;
     return x;
 }
+
 
 -(void)saveUserPreferences{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
