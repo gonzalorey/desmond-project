@@ -20,6 +20,8 @@
 
 #define INPUT_WINDOW   FOUR_MIN
 
+#define BUZZER_TIME  5
+
 #define TICK_FILE_PATH  @"tick"
 #define STILL_ALIVE_FILE_PATH  @"stillAlive"
 #define DEATH_SOUND @"death"
