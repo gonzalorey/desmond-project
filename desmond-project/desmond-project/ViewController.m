@@ -25,75 +25,125 @@
 
 - (void)keyboardWillHide:(NSNotification *)n
 {    
-    CGRect codeTextFieldFrame = self.codeTextField.frame;
+    NSDictionary* userInfo = [n userInfo];
+    
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    int slideAmount = keyboardSize.height/2;
+    
     CGRect codeLabelFrame = self.codeLabel.frame;
     CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    CGRect topMessageLabelFrame = self.topMessage.frame;
+    CGRect promptLabelFrame = self.promptLabel.frame;
+    CGRect countDownLabelFrame = self.countdownLabel.frame;
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
     
-    codeTextFieldFrame.origin = codeTextFieldOriginalPosition;
-    codeLabelFrame.origin = codeLabelOriginalPosition;
-    codeNameLabelFrame.origin = codeNameLabelOriginalPosition;
+    codeLabelFrame.origin.y += slideAmount;
+    codeNameLabelFrame.origin.y += slideAmount;
+    topMessageLabelFrame.origin.y += slideAmount;
+    promptLabelFrame.origin.y += slideAmount;
+    countDownLabelFrame.origin.y += slideAmount;
+    codeTextFieldFrame.origin.y += slideAmount;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.3];
     [self.codeTextField setFrame:codeTextFieldFrame];
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [self.topMessage setFrame:topMessageLabelFrame];
+    [self.promptLabel setFrame:promptLabelFrame];
+    [self.countdownLabel setFrame:countDownLabelFrame];
     [UIView commitAnimations];
-//    
-    
-    NSLog(@"keyboardWillHide");
 }
 
-- (void) printElement:(UIView *)v
-{
-    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
-}
 
 - (void)keyboardWillShow:(NSNotification *)n
 {   
     NSDictionary* userInfo = [n userInfo];
 
-//    // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    CGPoint keyboardOrigin = CGPointMake(0, 216);
-
-    CGRect codeTextFieldFrame = self.codeTextField.frame;
-
-//    NSLog(@"keyboard size: %@, origin: %@", NSStringFromCGSize(keyboardSize), NSStringFromCGPoint(keyboardOrigin));
     
-    codeTextFieldFrame.origin.y = keyboardSize.height-codeTextFieldFrame.size.height;
+    int slideAmount = keyboardSize.height/2;
+
     
     CGRect codeLabelFrame = self.codeLabel.frame;
     CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    CGRect topMessageLabelFrame = self.topMessage.frame;
+    CGRect promptLabelFrame = self.promptLabel.frame;
+    CGRect countDownLabelFrame = self.countdownLabel.frame;
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
     
-    codeLabelFrame.origin.y = codeTextFieldFrame.origin.y - codeLabelFrame.size.height;
-    codeNameLabelFrame.origin.y = codeLabelFrame.origin.y;
-//    
+    codeLabelFrame.origin.y -= slideAmount;
+    codeNameLabelFrame.origin.y -= slideAmount;
+    topMessageLabelFrame.origin.y -= slideAmount;
+    promptLabelFrame.origin.y -= slideAmount;
+    countDownLabelFrame.origin.y -= slideAmount;
+    codeTextFieldFrame.origin.y -= slideAmount;
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];
     [self.codeTextField setFrame:codeTextFieldFrame];
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [self.topMessage setFrame:topMessageLabelFrame];
+    [self.promptLabel setFrame:promptLabelFrame];
+    [self.countdownLabel setFrame:countDownLabelFrame];
     [UIView commitAnimations];
-//    
-//    keyboardIsShown = YES;
-    NSLog(@"keyboardWillShow");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
+    if([self checkCode])
+        [self nextLevel];
+    else
+        [self endTheWorld];
     return YES;
+}
+
+-(Boolean)checkCode{
+    return [self.codeLabel.text isEqualToString:self.codeTextField.text];
+}
+
+-(void)nextLevel{
+    self.levelsPassed = self.levelsPassed + 1;
+    self.countdownDate = nil;
+    self.codeTextField.text = @"";
+    [self saveUserPreferences];
+    [self establishCountdown];
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    
+    int prevHighScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"DesmondHighScore"];
+    
+    if (self.levelsPassed > prevHighScore) {
+        [[NSUserDefaults standardUserDefaults] setInteger:self.levelsPassed forKey:@"DesmondHighScore"];
+        [self reportScore:self.levelsPassed forCategory:@"com.igvsoft.desmondproject.savedworldleaderboard"];
+    }
+    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.codeTextField.text = @"";
+    // Dismiss the keyboard when the view outside the text field is touched.
+    [self.codeTextField resignFirstResponder];
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [self establishCountdown];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"intervalDate"];
+    
+    [self retrieveUserPreferences];
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    
+    self.codeTextField.clearsOnBeginEditing = YES;
 
 	// Do any additional setup after loading the view, typically from a nib.
     // register for keyboard notifications
@@ -142,6 +192,14 @@
 
 }
 
+-(void)showWelcomeScreen{
+    WelcomeViewController * wel = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+    wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    wel.delegate = self;
+    
+    [self presentModalViewController:wel animated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -150,6 +208,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!self.countdownDate) {
+        //show Welcome screen
+        [self showWelcomeScreen];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -173,18 +236,28 @@
 }
 
 -(void)establishCountdown{
-
+    
         if(self.countdownDate == nil)
         {
             [self retrieveUserPreferences];
             if(self.countdownDate == nil){
                 NSTimeInterval interval = [self generateNextRandomInterval];
+                [self generateCode];
                 self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
+
+                
             }
             [self saveUserPreferences];
             [self updateCountdownLabel];
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+
         }
+}
+
+-(void)generateCode{
+    self.clearanceCode = arc4random() %10000000;
+    self.clearanceCode = abs(self.clearanceCode);
+    self.codeLabel.text = [NSString stringWithFormat:@"%d", self.clearanceCode];
 }
 
 -(void)updateCountdownLabel{
@@ -198,7 +271,8 @@
     {
         [self endTheWorld];   
         return;
-    }
+    }else
+        [self enableTextField:interval];
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:nowDate  toDate:self.countdownDate  options:0];
     
@@ -209,41 +283,60 @@
     self.countdownLabel.text = formattedDate;
 }
 
+-(void)enableTextField:(NSTimeInterval)time{
+        if(time < INPUT_WINDOW)
+        {
+            [self.codeTextField setAlpha:1.0];
+            [self.codeTextField setEnabled:TRUE];   
+        }
+        else{
+            [self.codeTextField setAlpha:0.0];
+            [self.codeTextField setEnabled:FALSE];
+        }
+}
+
 -(void)endTheWorld
 {
     self.countdownLabel.text = @"BOOM";
     [self showResults];
+    self.countdownDate = nil;
+    [self saveUserPreferences];
 }
 
 -(void)showResults{
     if(!self.resetViewShown){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oh No!" message:@"The world is over!" delegate:self cancelButtonTitle:@"Restart" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oh No!" message:@"The world is over!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self resetData];    
+    self.codeTextField.text = @"";
+    [self resetData];
+    [self showWelcomeScreen];
 }
 
-- (void)didPresentAlertView:(UIAlertView *)alertView
+- (void)willPresentAlertView:(UIAlertView *)alertView
 {
     self.resetViewShown = true;
 }
+
 -(void)resetData
 {
     self.countdownDate = nil;
     self.levelsPassed = 0;
     self.resetViewShown = false;
     [self.timer invalidate];
-    [self saveUserPreferences];    
-    [self establishCountdown];
+    [self saveUserPreferences];
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
-    int x = arc4random() % 15;
+    int x = (arc4random() % (TIMESTEP * (self.levelsPassed+1)))+TIMESTEP;
     return x;
 }
+
 
 -(void)saveUserPreferences{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];

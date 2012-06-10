@@ -16,8 +16,12 @@
     IBOutlet UITextField * codeTextField;
     IBOutlet UILabel *codeLabel;
     IBOutlet UILabel *codeNameLabel;
+    IBOutlet UILabel * topMessage;
+    IBOutlet UILabel * promptLabel;
+    IBOutlet UILabel * scoreLabel;
     NSDate * countdownDate;
     int levelsPassed;
+    int clearanceCode;
     NSTimer * timer;
     Boolean resetViewShown;
     CGPoint codeTextFieldOriginalPosition;
@@ -38,8 +42,12 @@
 -(NSTimeInterval)generateNextRandomInterval;
 -(void)updateCountdownLabel;
 -(void)saveUserPreferences;
+-(void)generateCode;
 -(void)retrieveUserPreferences;
 -(void)endTheWorld;
 -(void)showResults;
 -(void)resetData;
+-(void)enableTextField:(NSTimeInterval)time;
+-(Boolean)checkCode;
+-(void)nextLevel;
 @end
