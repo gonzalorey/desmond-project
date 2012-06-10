@@ -14,7 +14,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer;
 
 - (void)didReceiveMemoryWarning
 {
@@ -106,7 +106,8 @@
 }
 
 -(Boolean)checkCode{
-    return [self.codeLabel.text isEqualToString:self.codeTextField.text];
+    NSString * input = [self.codeTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [input isEqualToString:self.codeLabel.text];
 }
 
 -(void)nextLevel{
@@ -199,24 +200,27 @@
     wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     wel.delegate = self;
     
-    [self presentModalViewController:wel animated:NO];
+    [self presentModalViewController:wel animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     if (!self.countdownDate) {
         //show Welcome screen
         [self showWelcomeScreen];
     }else {
-        [self establishCountdown];
+        [self startCountdown];
     }
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -227,6 +231,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+    self.invalidateTimer = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -239,24 +244,20 @@
     }
 }
 
--(void)establishCountdown{
-    
-        if(self.countdownDate == nil)
-        {
-            [self retrieveUserPreferences];
-            if(self.countdownDate == nil){
-                NSTimeInterval interval = [self generateNextRandomInterval];
-                [self generateCode];
-                self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
-
-                
-            }
-            [self saveUserPreferences];
-
-        }
-    
+-(void)startCountdown{
     [self updateCountdownLabel];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+    
+}
+
+-(void)establishCountdown{
+   
+    NSTimeInterval interval = [self generateNextRandomInterval];
+    [self generateCode];
+    self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
+    [self saveUserPreferences];
+    [self startCountdown];
+
 }
 
 -(void)generateCode{
@@ -267,12 +268,15 @@
 
 -(void)updateCountdownLabel{
     
+    if(invalidateTimer)
+        return;
+    
     NSDate * nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSSecondCalendarUnit| NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit;
 
     NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
-    if(interval <= 0 )
+    if(interval <= 0 && countdownDate != nil)
     {
         [self endTheWorld];   
         return;
@@ -286,6 +290,7 @@
                                [conversionInfo second]];
     
     self.countdownLabel.text = formattedDate;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
 }
 
 -(void)enableTextField:(NSTimeInterval)time{
@@ -302,10 +307,14 @@
 
 -(void)endTheWorld
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    self.invalidateTimer = YES;
     self.countdownLabel.text = @"BOOM";
+    [self resetData];
+
     [self showResults];
-    self.countdownDate = nil;
-    [self saveUserPreferences];
 }
 
 -(void)showResults{
@@ -317,7 +326,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.codeTextField.text = @"";
-    [self resetData];
     [self showWelcomeScreen];
 }
 
@@ -330,11 +338,9 @@
 {
     self.countdownDate = nil;
     self.levelsPassed = 0;
-    self.resetViewShown = false;
-    [self.timer invalidate];
     [self saveUserPreferences];
-    
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    self.resetViewShown = false;    
+
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
