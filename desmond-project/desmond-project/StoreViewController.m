@@ -37,7 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     
     if([IAPHelper sharedHelper].products == nil) {
-        [[IAPHelper sharedHelper] requestProducts];
+        [[IAPHelper sharedHelper] requestProducts:self.view];
     }
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismiss)];

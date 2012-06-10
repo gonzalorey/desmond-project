@@ -19,6 +19,7 @@
 		C006AE2215845CBF00112790 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2115845CBF00112790 /* AppDelegate.m */; };
 		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
 		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
+		FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FC39120515850ECA007E0942 /* MBProgressHUD.m */; };
 		FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC40B8C115846BDD00EF23D4 /* GameKit.framework */; };
 		FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8CE1584B00700EF23D4 /* game-center-logo.png */; };
 		FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40B8D61584B4D500EF23D4 /* WelcomeViewController.m */; };
@@ -46,6 +47,8 @@
 		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		C0BC6A2D15849CBD0079779A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		FC39120415850ECA007E0942 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		FC39120515850ECA007E0942 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FC40B8C115846BDD00EF23D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FC40B8CE1584B00700EF23D4 /* game-center-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-center-logo.png"; sourceTree = "<group>"; };
 		FC40B8D51584B4D500EF23D4 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 		C006AE1715845CBF00112790 /* desmond-project */ = {
 			isa = PBXGroup;
 			children = (
+				FC39120415850ECA007E0942 /* MBProgressHUD.h */,
+				FC39120515850ECA007E0942 /* MBProgressHUD.m */,
 				C0BC6A2D15849CBD0079779A /* config.h */,
 				0034F3211584867C003C2C57 /* IAPHelper.h */,
 				0034F3221584867C003C2C57 /* IAPHelper.m */,
@@ -203,6 +208,7 @@
 				0034F3231584867C003C2C57 /* IAPHelper.m in Sources */,
 				FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */,
 				00BB160C1584D0140043F58C /* StoreViewController.m in Sources */,
+				FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +240,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Daniel Melendez (2W4S95PD94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Melendez (2W4S95PD94)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -249,6 +256,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "6AD5C4C4-6914-475E-AB73-5D40F75F9C01";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6AD5C4C4-6914-475E-AB73-5D40F75F9C01";
 				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -278,11 +287,15 @@
 		C006AE2F15845CBF00112790 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Daniel Melendez (2W4S95PD94)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Daniel Melendez (2W4S95PD94)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desmond-project/desmond-project-Prefix.pch";
 				INFOPLIST_FILE = "desmond-project/desmond-project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6AD5C4C4-6914-475E-AB73-5D40F75F9C01";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6AD5C4C4-6914-475E-AB73-5D40F75F9C01";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

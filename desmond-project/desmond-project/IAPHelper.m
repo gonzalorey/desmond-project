@@ -7,6 +7,7 @@
 //
 
 #import "IAPHelper.h"
+#import "MBProgressHUD.h"
 
 @implementation IAPHelper
 
@@ -14,6 +15,7 @@
 @synthesize productIdentifiers = _productIdentifiers;
 @synthesize products = _products;
 @synthesize purchasedProducts = _purchasedProducts;
+@synthesize waitView = _waitView;
 
 static IAPHelper * _sharedHelper;
 
@@ -61,7 +63,11 @@ static IAPHelper * _sharedHelper;
     return self;
 }
 
-- (void)requestProducts {
+- (void)requestProducts:(UIView *)waitView {
+    
+    self.waitView = waitView;
+    
+    [MBProgressHUD showWaitAlert:@"Loading products..." inView:waitView];
     
     self.request = [[SKProductsRequest alloc] initWithProductIdentifiers:_productIdentifiers];
     _request.delegate = self;
@@ -101,6 +107,8 @@ static IAPHelper * _sharedHelper;
 //    NSLog(@"They should have been printed so far...");
 
     self.request = nil;    
+    
+    [MBProgressHUD hideWaitAlertInView:self.waitView];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductsLoadedNotification object:nil];    
 }

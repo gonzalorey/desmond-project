@@ -18,16 +18,19 @@
     SKProductsRequest * _request;
     NSArray * _products;
     NSMutableSet * _purchasedProducts;
+    
+    UIView * _waitView;
 }
 
 @property (retain) SKProductsRequest *request;
 @property (retain) NSSet *productIdentifiers;
 @property (retain) NSArray * products;
 @property (retain) NSMutableSet *purchasedProducts;
+@property(nonatomic,retain) UIView * waitView;
 
 + (IAPHelper *) sharedHelper;
 
-- (void)requestProducts;
+- (void)requestProducts:(UIView *)waitView;
 - (id)initWithProductIdentifiers:(NSSet *)productIdentifiers;
 - (void)buyProductIdentifier:(NSString *)productIdentifier;
 
