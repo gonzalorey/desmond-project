@@ -233,6 +233,12 @@
 				FC40B8D91584B4D500EF23D4 /* WelcomeViewController.xib in Resources */,
 				00BB160B1584D0140043F58C /* StoreViewController.xib in Resources */,
 				FC39120B158516E0007E0942 /* StoreCell.xib in Resources */,
+				C0F2A75B1584F2A60049E52D /* BoomViewController.xib in Resources */,
+				C0F2A75F1584FA3B0049E52D /* skull-head-danger-bones.jpg in Resources */,
+				C0F2A76515851F330049E52D /* death.m4a in Resources */,
+				00BB160B1584D0140043F58C /* StoreViewController.xib in Resources */,
+				8BC6FB0F15850163007F9113 /* tick.wav in Resources */,
+				8B74CE5515851D52004D5564 /* stillAlive.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
