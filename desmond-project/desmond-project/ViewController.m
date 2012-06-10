@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "IAPHelper.h"
+#import "StoreViewController.h"
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -144,19 +145,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    NSSet *productIdentifiers = [NSSet setWithObjects: 
-                                 @"com.igvsoft.desmondproject.1reminder", 
-                                 nil];
-    
-    self.iaph = [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers];
-    
-    if(self.iaph.products == nil) {
-        
-        NSLog(@"ABOUT TO SHOW THE STUFF...");
-        
-        [self.iaph requestProducts];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -301,6 +289,16 @@
     }
 }
 
+- (void) showInAppPurchaseOptions
+{
+    StoreViewController *storeViewController = [[StoreViewController alloc] initWithNibName:@"StoreViewController" bundle:nil];
+    
+    if(storeViewController != Nil)
+    {
+        [self presentModalViewController:storeViewController animated:TRUE];
+    }
+}
+
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -314,4 +312,7 @@
     [self showLeaderboard];
 }
 
+-(IBAction)showInAppPurchaseOptionsButton:(id)sender{
+    [self showInAppPurchaseOptions];
+}
 @end

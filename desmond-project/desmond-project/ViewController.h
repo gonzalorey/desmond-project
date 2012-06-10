@@ -23,7 +23,6 @@
     CGPoint codeTextFieldOriginalPosition;
     CGPoint codeLabelOriginalPosition;
     CGPoint codeNameLabelOriginalPosition;
-    IAPHelper * _iaph;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -34,7 +33,6 @@
 @property(nonatomic, assign) Boolean resetViewShown;
 @property(nonatomic, retain) UILabel *codeLabel;
 @property(nonatomic, retain) UILabel *codeNameLabel;
-@property(nonatomic, retain) IAPHelper * iaph;
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
