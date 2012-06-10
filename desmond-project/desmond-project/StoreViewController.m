@@ -85,7 +85,7 @@
     
     // Parse the purchased remainders from the response
     NSArray *tokens = [productIdentifier componentsSeparatedByString: @"."];
-    totalReminders += (int)[tokens objectAtIndex:[tokens count] - 1];
+    totalReminders += [[tokens objectAtIndex:[tokens count] - 1] intValue];
     
     // Save it on the NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setInteger:totalReminders forKey:@"totalReminders"];    
