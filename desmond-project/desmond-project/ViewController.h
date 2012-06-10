@@ -32,8 +32,13 @@
     Boolean invalidateTimer;
     CFURLRef		tickSoundFileURLRef;
 	SystemSoundID	tickSoundFileObject;
+    
     CFURLRef		stillAliveSoundFileURLRef;
 	SystemSoundID	stillAliveSoundFileObject;
+    
+    
+    CFURLRef		deathSoundFileURLRef;
+	SystemSoundID	deathSoundFileObject;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;

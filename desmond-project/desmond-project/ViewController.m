@@ -142,6 +142,11 @@
                                                  withExtension: SOUND_TYPE];
     NSURL *stillAliveSound   = [[NSBundle mainBundle] URLForResource: STILL_ALIVE_FILE_PATH
                                                  withExtension: SOUND_TYPE];
+    
+    NSURL * deathSound = [[NSBundle mainBundle] URLForResource:DEATH_SOUND withExtension:@"m4a"];
+    
+    deathSoundFileURLRef = (__bridge_retained CFURLRef)deathSound;
+    
     // Store the URL as a CFURLRef instance
     tickSoundFileURLRef = (__bridge_retained CFURLRef) tickSound;
     stillAliveSoundFileURLRef = (__bridge_retained CFURLRef) stillAliveSound;
@@ -149,6 +154,7 @@
     // Create a system sound object representing the sound file.
     AudioServicesCreateSystemSoundID (tickSoundFileURLRef, &tickSoundFileObject);
     AudioServicesCreateSystemSoundID (stillAliveSoundFileURLRef, &stillAliveSoundFileObject);
+    AudioServicesCreateSystemSoundID(deathSoundFileURLRef, &deathSoundFileObject);
 }
 
 - (void)viewDidLoad
@@ -343,6 +349,7 @@
     [self resetData];
     BoomViewController *boomVC = [[BoomViewController alloc] initWithNibName:@"BoomViewController" bundle:nil];
 
+    AudioServicesPlaySystemSound(deathSoundFileObject);
     [self presentModalViewController:boomVC animated:NO];
 //    [self showResults];
 }

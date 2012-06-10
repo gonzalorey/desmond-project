@@ -18,10 +18,11 @@
 #define LEVELS_UNDER_FIVE_MIN 3
 #define LEVELS_UNDER_HOUR 6
 
-#define INPUT_WINDOW   ONE_DAY
+#define INPUT_WINDOW   60*4
 
 #define TICK_FILE_PATH  @"tick"
 #define STILL_ALIVE_FILE_PATH  @"stillAlive"
+#define DEATH_SOUND @"death"
 #define SOUND_TYPE      @"wav"
 
 
