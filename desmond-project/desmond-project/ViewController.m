@@ -11,7 +11,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph, promptLabel, topMessage, scoreLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -24,55 +24,69 @@
 
 - (void)keyboardWillHide:(NSNotification *)n
 {    
-    CGRect codeTextFieldFrame = self.codeTextField.frame;
+    NSDictionary* userInfo = [n userInfo];
+    
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    int slideAmount = keyboardSize.height/2;
+    
     CGRect codeLabelFrame = self.codeLabel.frame;
     CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    CGRect topMessageLabelFrame = self.topMessage.frame;
+    CGRect promptLabelFrame = self.promptLabel.frame;
+    CGRect countDownLabelFrame = self.countdownLabel.frame;
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
     
-    codeTextFieldFrame.origin = codeTextFieldOriginalPosition;
-    codeLabelFrame.origin = codeLabelOriginalPosition;
-    codeNameLabelFrame.origin = codeNameLabelOriginalPosition;
+    codeLabelFrame.origin.y += slideAmount;
+    codeNameLabelFrame.origin.y += slideAmount;
+    topMessageLabelFrame.origin.y += slideAmount;
+    promptLabelFrame.origin.y += slideAmount;
+    countDownLabelFrame.origin.y += slideAmount;
+    codeTextFieldFrame.origin.y += slideAmount;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    // The kKeyboardAnimationDuration I am using is 0.3
     [UIView setAnimationDuration:0.3];
     [self.codeTextField setFrame:codeTextFieldFrame];
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [self.topMessage setFrame:topMessageLabelFrame];
+    [self.promptLabel setFrame:promptLabelFrame];
+    [self.countdownLabel setFrame:countDownLabelFrame];
     [UIView commitAnimations];
 }
-
-//- (void) printElement:(UIView *)v
-//{
-//    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
-//}
 
 - (void)keyboardWillShow:(NSNotification *)n
 {   
     NSDictionary* userInfo = [n userInfo];
 
-//    // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    CGPoint keyboardOrigin = CGPointMake(0, 216);
-
-    CGRect codeTextFieldFrame = self.codeTextField.frame;
-
-//    NSLog(@"keyboard size: %@, origin: %@", NSStringFromCGSize(keyboardSize), NSStringFromCGPoint(keyboardOrigin));
     
-    codeTextFieldFrame.origin.y = keyboardSize.height-codeTextFieldFrame.size.height;
+    int slideAmount = keyboardSize.height/2;
     
     CGRect codeLabelFrame = self.codeLabel.frame;
     CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    CGRect topMessageLabelFrame = self.topMessage.frame;
+    CGRect promptLabelFrame = self.promptLabel.frame;
+    CGRect countDownLabelFrame = self.countdownLabel.frame;
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
     
-    codeLabelFrame.origin.y = codeTextFieldFrame.origin.y - codeLabelFrame.size.height;
-    codeNameLabelFrame.origin.y = codeLabelFrame.origin.y;
-//    
+    codeLabelFrame.origin.y -= slideAmount;
+    codeNameLabelFrame.origin.y -= slideAmount;
+    topMessageLabelFrame.origin.y -= slideAmount;
+    promptLabelFrame.origin.y -= slideAmount;
+    countDownLabelFrame.origin.y -= slideAmount;
+    codeTextFieldFrame.origin.y -= slideAmount;
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3];
     [self.codeTextField setFrame:codeTextFieldFrame];
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [self.topMessage setFrame:topMessageLabelFrame];
+    [self.promptLabel setFrame:promptLabelFrame];
+    [self.countdownLabel setFrame:countDownLabelFrame];
     [UIView commitAnimations];
 }
 
