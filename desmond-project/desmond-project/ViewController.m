@@ -244,6 +244,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.codeTextField.text = @"";
     [super viewWillAppear:animated];
 
     
