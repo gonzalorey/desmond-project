@@ -58,12 +58,43 @@
             localNotif.alertBody = [NSString stringWithFormat:@"The world is over! At least you saved it %d times...",[defaults integerForKey:@"level"]];
             localNotif.alertAction = @"View";
             localNotif.soundName = UILocalNotificationDefaultSoundName;
+            localNotif.userInfo = [NSDictionary dictionaryWithObject:@"lost" forKey:@"type"];
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+        }
+    }
+    
+    if ([defaults integerForKey:@"totalReminders"] > 0) {
+        UILocalNotification * localNotif = [[UILocalNotification alloc] init];
+        
+        if (localNotif) {
+            NSDate * reminderDate = [NSDate dateWithTimeInterval:-(4*60) sinceDate:[defaults objectForKey:@"intervalDate"]];
+            localNotif.fireDate = reminderDate;
+            localNotif.alertBody = [NSString stringWithFormat:@"You have less than 4 minutes left to save the world!!! GO!!!!!"];
+            localNotif.alertAction = @"GO!";
+            localNotif.soundName = UILocalNotificationDefaultSoundName;
+            localNotif.userInfo = [NSDictionary dictionaryWithObject:@"reminder" forKey:@"type"];
             
             [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
         }
     }
     
     
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+	
+	if ([[notification.userInfo objectForKey:@"type"] isEqualToString:@"reminder"]) {
+        //decrement reminders
+        int remindersLeft = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalReminders"];
+        remindersLeft--;
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:remindersLeft forKey:@"totalReminders"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchaseRemaindersAmount object:nil];
+    }    
+	
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
