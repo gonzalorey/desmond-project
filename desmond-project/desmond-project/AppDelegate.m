@@ -43,6 +43,24 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"intervalDate"]) {
+        
+        UILocalNotification * localNotif = [[UILocalNotification alloc] init];
+        
+        if (localNotif) {
+            localNotif.fireDate = [defaults objectForKey:@"intervalDate"];
+            localNotif.alertBody = [NSString stringWithFormat:@"The world is over! At least you saved it %d times...",[defaults integerForKey:@"level"]];
+            localNotif.alertAction = @"View";
+            localNotif.soundName = UILocalNotificationDefaultSoundName;
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+        }
+    }
+    
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
