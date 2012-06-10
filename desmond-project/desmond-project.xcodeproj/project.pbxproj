@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1115845CBF00112790 /* UIKit.framework */; };
+		C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1315845CBF00112790 /* Foundation.framework */; };
+		C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1515845CBF00112790 /* CoreGraphics.framework */; };
+		C006AE1C15845CBF00112790 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C006AE1A15845CBF00112790 /* InfoPlist.strings */; };
+		C006AE1E15845CBF00112790 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE1D15845CBF00112790 /* main.m */; };
+		C006AE2215845CBF00112790 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2115845CBF00112790 /* AppDelegate.m */; };
+		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
+		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
+		C006AE2B15845CBF00112790 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2915845CBF00112790 /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C006AE0D15845CBF00112790 /* desmond-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "desmond-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C006AE1115845CBF00112790 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C006AE1315845CBF00112790 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C006AE1515845CBF00112790 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C006AE1915845CBF00112790 /* desmond-project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "desmond-project-Info.plist"; sourceTree = "<group>"; };
+		C006AE1B15845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C006AE1D15845CBF00112790 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C006AE1F15845CBF00112790 /* desmond-project-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desmond-project-Prefix.pch"; sourceTree = "<group>"; };
+		C006AE2015845CBF00112790 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C006AE2115845CBF00112790 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C006AE2315845CBF00112790 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		C006AE2A15845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C006AE0A15845CBF00112790 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */,
+				C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */,
+				C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C006AE0215845CBE00112790 = {
+			isa = PBXGroup;
+			children = (
+				C006AE1715845CBF00112790 /* desmond-project */,
+				C006AE1015845CBF00112790 /* Frameworks */,
+				C006AE0E15845CBF00112790 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C006AE0E15845CBF00112790 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C006AE0D15845CBF00112790 /* desmond-project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C006AE1015845CBF00112790 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C006AE1115845CBF00112790 /* UIKit.framework */,
+				C006AE1315845CBF00112790 /* Foundation.framework */,
+				C006AE1515845CBF00112790 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C006AE1715845CBF00112790 /* desmond-project */ = {
+			isa = PBXGroup;
+			children = (
+				C006AE2015845CBF00112790 /* AppDelegate.h */,
+				C006AE2115845CBF00112790 /* AppDelegate.m */,
+				C006AE2315845CBF00112790 /* ViewController.h */,
+				C006AE2415845CBF00112790 /* ViewController.m */,
+				C006AE2615845CBF00112790 /* ViewController_iPhone.xib */,
+				C006AE2915845CBF00112790 /* ViewController_iPad.xib */,
+				C006AE1815845CBF00112790 /* Supporting Files */,
+			);
+			path = "desmond-project";
+			sourceTree = "<group>";
+		};
+		C006AE1815845CBF00112790 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C006AE1915845CBF00112790 /* desmond-project-Info.plist */,
+				C006AE1A15845CBF00112790 /* InfoPlist.strings */,
+				C006AE1D15845CBF00112790 /* main.m */,
+				C006AE1F15845CBF00112790 /* desmond-project-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C006AE0C15845CBF00112790 /* desmond-project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C006AE2E15845CBF00112790 /* Build configuration list for PBXNativeTarget "desmond-project" */;
+			buildPhases = (
+				C006AE0915845CBF00112790 /* Sources */,
+				C006AE0A15845CBF00112790 /* Frameworks */,
+				C006AE0B15845CBF00112790 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "desmond-project";
+			productName = "desmond-project";
+			productReference = C006AE0D15845CBF00112790 /* desmond-project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C006AE0415845CBE00112790 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C006AE0715845CBE00112790 /* Build configuration list for PBXProject "desmond-project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C006AE0215845CBE00112790;
+			productRefGroup = C006AE0E15845CBF00112790 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C006AE0C15845CBF00112790 /* desmond-project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C006AE0B15845CBF00112790 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C006AE1C15845CBF00112790 /* InfoPlist.strings in Resources */,
+				C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */,
+				C006AE2B15845CBF00112790 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C006AE0915845CBF00112790 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C006AE1E15845CBF00112790 /* main.m in Sources */,
+				C006AE2215845CBF00112790 /* AppDelegate.m in Sources */,
+				C006AE2515845CBF00112790 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C006AE1A15845CBF00112790 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C006AE1B15845CBF00112790 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C006AE2615845CBF00112790 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C006AE2715845CBF00112790 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		C006AE2915845CBF00112790 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C006AE2A15845CBF00112790 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C006AE2C15845CBF00112790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C006AE2D15845CBF00112790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C006AE2F15845CBF00112790 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "desmond-project/desmond-project-Prefix.pch";
+				INFOPLIST_FILE = "desmond-project/desmond-project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C006AE3015845CBF00112790 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "desmond-project/desmond-project-Prefix.pch";
+				INFOPLIST_FILE = "desmond-project/desmond-project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C006AE0715845CBE00112790 /* Build configuration list for PBXProject "desmond-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C006AE2C15845CBF00112790 /* Debug */,
+				C006AE2D15845CBF00112790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C006AE2E15845CBF00112790 /* Build configuration list for PBXNativeTarget "desmond-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C006AE2F15845CBF00112790 /* Debug */,
+				C006AE3015845CBF00112790 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C006AE0415845CBE00112790 /* Project object */;
+}
