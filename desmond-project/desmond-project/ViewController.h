@@ -73,4 +73,5 @@
 -(void)nextLevel;
 -(void) reportScore: (int64_t) score forCategory: (NSString*) category;
 - (void)initSound;
+- (void) updateRemaindersLabel;
 @end
