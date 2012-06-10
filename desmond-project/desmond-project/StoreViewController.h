@@ -15,6 +15,8 @@
     UITableView * _inAppPurchasesTableView;
     IBOutlet UITableView *uiTableView;
     ViewController *delegate;
+    
+    UINib *cellLoader;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *inAppPurchasesTableView;

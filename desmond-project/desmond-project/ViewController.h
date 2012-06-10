@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "IAPHelper.h"
 #import "BoomViewController.h"
 
@@ -30,6 +31,15 @@
     CGPoint codeLabelOriginalPosition;
     CGPoint codeNameLabelOriginalPosition;
     Boolean invalidateTimer;
+    CFURLRef		tickSoundFileURLRef;
+	SystemSoundID	tickSoundFileObject;
+    
+    CFURLRef		stillAliveSoundFileURLRef;
+	SystemSoundID	stillAliveSoundFileObject;
+    
+    
+    CFURLRef		deathSoundFileURLRef;
+	SystemSoundID	deathSoundFileObject;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -62,4 +72,5 @@
 -(Boolean)checkCode;
 -(void)nextLevel;
 -(void) reportScore: (int64_t) score forCategory: (NSString*) category;
+- (void)initSound;
 @end
