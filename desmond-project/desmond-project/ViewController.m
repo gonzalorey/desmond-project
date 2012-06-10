@@ -106,7 +106,8 @@
 }
 
 -(Boolean)checkCode{
-    return [self.codeLabel.text isEqualToString:self.codeTextField.text];
+    NSString * input = [self.codeTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [input isEqualToString:self.codeLabel.text];
 }
 
 -(void)nextLevel{
@@ -199,24 +200,27 @@
     wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     wel.delegate = self;
     
-    [self presentModalViewController:wel animated:NO];
+    [self presentModalViewController:wel animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     if (!self.countdownDate) {
         //show Welcome screen
         [self showWelcomeScreen];
     }else {
         [self startCountdown];
     }
+    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -227,6 +231,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+    self.invalidateTimer = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -265,6 +270,7 @@
     
     if(invalidateTimer)
         return;
+    
     NSDate * nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSSecondCalendarUnit| NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit;
@@ -284,6 +290,7 @@
                                [conversionInfo second]];
     
     self.countdownLabel.text = formattedDate;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
 }
 
 -(void)enableTextField:(NSTimeInterval)time{
@@ -319,7 +326,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.codeTextField.text = @"";
-    self.invalidateTimer = NO;
     [self showWelcomeScreen];
 }
 
