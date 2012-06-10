@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface ViewController : UIViewController<UIAlertViewDelegate>{
+@interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate>{
+
 
     IBOutlet UILabel * countdownLabel;
     IBOutlet UITextField * codeTextField;

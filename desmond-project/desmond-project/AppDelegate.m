@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import <GameKit/GameKit.h>
 
 @implementation AppDelegate
 
@@ -19,13 +20,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }
+    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    [self authenticateLocalPlayer];
+    
     return YES;
 }
 
@@ -66,6 +66,21 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (void) authenticateLocalPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error authenticating: %@",[error localizedDescription]);
+        }
+        if (localPlayer.isAuthenticated)
+        {
+            // Perform additional tasks for the authenticated player.
+            NSLog(@"Authenticated: %@",localPlayer.alias);
+        }
+    }];
 }
 
 @end
