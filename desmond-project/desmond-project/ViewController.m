@@ -246,6 +246,7 @@
 
 -(void)startCountdown{
     [self updateCountdownLabel];
+    [self.timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
     
 }
