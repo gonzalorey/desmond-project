@@ -10,7 +10,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown;
 
 - (void)didReceiveMemoryWarning
 {
@@ -75,7 +75,6 @@
             }
             [self saveUserPreferences];
             [self updateCountdownLabel];
-            [self saveUserPreferences];
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
         }
 }
@@ -86,17 +85,55 @@
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
     unsigned int unitFlags = NSSecondCalendarUnit| NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit;
 
+    NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
+    if(interval <= 0 )
+    {
+        [self endTheWorld];   
+        return;
+    }
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:nowDate  toDate:self.countdownDate  options:0];
     
+
     NSString* formattedDate = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], 
                                [conversionInfo second]];
     
     self.countdownLabel.text = formattedDate;
 }
 
+-(void)endTheWorld
+{
+    self.countdownLabel.text = @"BOOM";
+    [self showResults];
+}
+
+-(void)showResults{
+    if(!self.resetViewShown){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oh No!" message:@"The world is over!" delegate:self cancelButtonTitle:@"Restart" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self resetData];    
+}
+
+- (void)didPresentAlertView:(UIAlertView *)alertView
+{
+    self.resetViewShown = true;
+}
+-(void)resetData
+{
+    self.countdownDate = nil;
+    self.levelsPassed = 0;
+    self.resetViewShown = false;
+    [self.timer invalidate];
+    [self saveUserPreferences];    
+    [self establishCountdown];
+}
+
 -(NSTimeInterval)generateNextRandomInterval{
-    int x = arc4random() % 100;
+    int x = arc4random() % 15;
     return x;
 }
 

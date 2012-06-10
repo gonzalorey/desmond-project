@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController{
+@interface ViewController : UIViewController<UIAlertViewDelegate>{
 
     IBOutlet UILabel * countdownLabel;
     IBOutlet UITextField * codeTextField;
     NSDate * countdownDate;
     int levelsPassed;
     NSTimer * timer;
+    Boolean resetViewShown;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -22,10 +23,14 @@
 @property(nonatomic, retain) NSDate * countdownDate;
 @property(nonatomic, assign) int levelsPassed;
 @property(nonatomic, retain) NSTimer* timer;
+@property(nonatomic, assign) Boolean resetViewShown;
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
 -(void)updateCountdownLabel;
 -(void)saveUserPreferences;
 -(void)retrieveUserPreferences;
+-(void)endTheWorld;
+-(void)showResults;
+-(void)resetData;
 @end
