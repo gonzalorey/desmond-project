@@ -40,15 +40,12 @@
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
     [UIView commitAnimations];
-//    
-    
-    NSLog(@"keyboardWillHide");
 }
 
-- (void) printElement:(UIView *)v
-{
-    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
-}
+//- (void) printElement:(UIView *)v
+//{
+//    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
+//}
 
 - (void)keyboardWillShow:(NSNotification *)n
 {   
@@ -77,15 +74,20 @@
     [self.codeLabel setFrame:codeLabelFrame];
     [self.codeNameLabel setFrame:codeNameLabelFrame];
     [UIView commitAnimations];
-//    
-//    keyboardIsShown = YES;
-    NSLog(@"keyboardWillShow");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
+    
     return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Dismiss the keyboard when the view outside the text field is touched.
+    [self.codeTextField resignFirstResponder];
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)viewDidLoad
@@ -93,6 +95,7 @@
     [super viewDidLoad];
 
     [self establishCountdown];
+    self.codeTextField.clearsOnBeginEditing = YES;
 
 	// Do any additional setup after loading the view, typically from a nib.
     // register for keyboard notifications
