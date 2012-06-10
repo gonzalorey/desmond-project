@@ -14,7 +14,8 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer,
+    remindersLeftLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -159,6 +160,13 @@
                                              selector:@selector(keyboardWillHide:) 
                                                  name:UIKeyboardWillHideNotification 
                                                object:self.view.window];
+    
+    // register for remainders purchases
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(updateRemaindersLabel:) 
+                                                 name:kProductPurchaseRemaindersAmount 
+                                               object:nil];
+    
     
     codeTextFieldOriginalPosition = self.codeTextField.frame.origin;
     codeLabelOriginalPosition = self.codeLabel.frame.origin;
@@ -419,6 +427,12 @@
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:storeViewController];
         [self presentModalViewController:nav animated:TRUE];
     }
+}
+
+- (void) updateRemaindersLabel
+{
+    int totalRemainders = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalReminders"];
+    remindersLeftLabel.text = [NSString stringWithFormat:@"Remainders left: %d", totalRemainders];
 }
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController

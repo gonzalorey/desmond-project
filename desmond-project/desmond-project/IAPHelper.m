@@ -32,7 +32,11 @@ static IAPHelper * _sharedHelper;
 - (id)init {
     
     NSSet *productIdentifiers = [NSSet setWithObjects:
-                                 @"com.igvsoft.desmondproject.1reminder",
+                                 @"com.igvsoft.desmondproject.5",
+                                 @"com.igvsoft.desmondproject.10",
+                                 @"com.igvsoft.desmondproject.20",
+                                 @"com.igvsoft.desmondproject.50",
+                                 @"com.igvsoft.desmondproject.100",                                 
                                  nil];
     
     if ((self = [self initWithProductIdentifiers:productIdentifiers])) {                

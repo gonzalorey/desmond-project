@@ -20,6 +20,7 @@
     IBOutlet UILabel * topMessage;
     IBOutlet UILabel * promptLabel;
     IBOutlet UILabel * scoreLabel;
+    IBOutlet UILabel * remindersLeftLabel;
     NSDate * countdownDate;
     int levelsPassed;
     int clearanceCode;
@@ -42,6 +43,7 @@
 @property(nonatomic, retain) UILabel *topMessage;
 @property(nonatomic, retain) UILabel *promptLabel;
 @property(nonatomic, retain) UILabel *scoreLabel;
+@property(nonatomic, retain) UILabel *remindersLeftLabel;
 @property(nonatomic, assign) int clearanceCode;
 @property(nonatomic, assign) Boolean invalidateTimer;
 

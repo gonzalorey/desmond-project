@@ -78,6 +78,19 @@
     NSString *productIdentifier = (NSString *) notification.object;
     NSLog(@"Purchased: %@", productIdentifier);
     
+    int totalReminders = [[NSUserDefaults standardUserDefaults] integerForKey:@"totalReminders"];
+    
+    // Parse the purchased remainders from the response
+    NSArray *tokens = [productIdentifier componentsSeparatedByString: @"."];
+    totalReminders += (int)[tokens objectAtIndex:[tokens count] - 1];
+    
+    // Save it on the NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] setInteger:totalReminders forKey:@"totalReminders"];    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // Set a notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProductPurchaseRemaindersAmount object:nil];
+    
     [uiTableView reloadData];    
     
 }

@@ -12,6 +12,7 @@
 #define kProductsLoadedNotification         @"ProductsLoaded"
 #define kProductPurchasedNotification       @"ProductPurchased"
 #define kProductPurchaseFailedNotification  @"ProductPurchaseFailed"
+#define kProductPurchaseRemaindersAmount    @"ProductPurchaseRemaindersAmount"
 
 @interface IAPHelper : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
     NSSet * _productIdentifiers;
