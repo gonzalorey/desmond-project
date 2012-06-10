@@ -9,6 +9,7 @@
 #import "StoreViewController.h"
 #import "MBProgressHUD.h"
 #import "StoreCell.h"
+#import <GameKit/GameKit.h>
 
 @implementation StoreViewController
 
@@ -74,6 +75,22 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent
+{
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        [achievement reportAchievementWithCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 // Retain the achievement object and try again later (not shown).
+             }
+         }];
+    }
+}
+
 - (void)productPurchased:(NSNotification *)notification {
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -85,7 +102,12 @@
     
     // Parse the purchased remainders from the response
     NSArray *tokens = [productIdentifier componentsSeparatedByString: @"."];
-    totalReminders += [[tokens objectAtIndex:[tokens count] - 1] intValue];
+    int boughtReminders = [[tokens objectAtIndex:[tokens count] - 1] intValue];
+    totalReminders += boughtReminders;
+    
+    if (boughtReminders == 100) {
+        [self reportAchievementIdentifier:@"com.igvsoft.bought100" percentComplete:100.0];
+    }
     
     // Save it on the NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setInteger:totalReminders forKey:@"totalReminders"];    
@@ -105,7 +127,6 @@
     [alert show];
     
     [MBProgressHUD hideWaitAlertInView:self.view];
-    
 }
 
 - (void)productPurchaseFailed:(NSNotification *)notification {
