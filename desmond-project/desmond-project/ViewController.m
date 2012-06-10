@@ -185,7 +185,7 @@
     
     // register for remainders purchases
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(updateRemaindersLabel:) 
+                                             selector:@selector(updateRemaindersLabel) 
                                                  name:kProductPurchaseRemaindersAmount 
                                                object:nil];
     
@@ -196,6 +196,8 @@
     
     // init ticking sound effect    
     [self initSound];
+    
+    [self updateRemaindersLabel];
 }
 
 - (void)viewDidUnload
