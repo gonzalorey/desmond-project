@@ -12,7 +12,7 @@
 #import "IAPHelper.h"
 #import "BoomViewController.h"
 
-@interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, UITextFieldDelegate>{
+@interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, UITextFieldDelegate,GKAchievementViewControllerDelegate>{
 
     IBOutlet UILabel * countdownLabel;
     IBOutlet UITextField * codeTextField;
@@ -22,6 +22,8 @@
     IBOutlet UILabel * promptLabel;
     IBOutlet UILabel * scoreLabel;
     IBOutlet UILabel * remindersLeftLabel;
+    IBOutlet UIButton * leaderboardButton;
+    IBOutlet UIButton * achievementsButton;
     NSDate * countdownDate;
     int levelsPassed;
     int clearanceCode;

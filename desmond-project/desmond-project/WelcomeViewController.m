@@ -66,8 +66,27 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void) showAchievements
+{
+    GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+    if (achievements != nil)
+    {
+        achievements.achievementDelegate = self;
+        [self presentModalViewController: achievements animated: YES];
+    }
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 -(IBAction)showLeaderboardButton:(id)sender{
     [self showLeaderboard];
+}
+
+-(IBAction)showAchievementsButton:(id)sender{
+    [self showAchievements];
 }
 
 -(IBAction)startGame:(id)sender{

@@ -10,7 +10,7 @@
 #import <GameKit/GameKit.h>
 #import "ViewController.h"
 
-@interface WelcomeViewController : UIViewController<GKLeaderboardViewControllerDelegate>{
+@interface WelcomeViewController : UIViewController<GKLeaderboardViewControllerDelegate,GKAchievementViewControllerDelegate>{
     IBOutlet UILabel * highScoreLabel;
     
     ViewController * _delegate;

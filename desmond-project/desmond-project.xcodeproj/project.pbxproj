@@ -64,6 +64,7 @@
 		FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8CE1584B00700EF23D4 /* game-center-logo.png */; };
 		FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40B8D61584B4D500EF23D4 /* WelcomeViewController.m */; };
 		FC40B8D91584B4D500EF23D4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8D71584B4D500EF23D4 /* WelcomeViewController.xib */; };
+		FC9F574D15855ED9002CB5A3 /* goals_256.png in Resources */ = {isa = PBXBuildFile; fileRef = FC9F574C15855ED9002CB5A3 /* goals_256.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,7 @@
 		FC40B8D51584B4D500EF23D4 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FC40B8D61584B4D500EF23D4 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		FC40B8D71584B4D500EF23D4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		FC9F574C15855ED9002CB5A3 /* goals_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goals_256.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 		C006AE1815845CBF00112790 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC9F574C15855ED9002CB5A3 /* goals_256.png */,
 				FC39122815853FE4007E0942 /* desmond-logo-114.png */,
 				FC39122615853FDC007E0942 /* desmond-logo-57.png */,
 				C0F2A76415851F330049E52D /* death.m4a */,
@@ -371,6 +374,7 @@
 				C08A9D0615853A2800600439 /* whiteButtonHighlight@2x.png in Resources */,
 				FC39122715853FDC007E0942 /* desmond-logo-57.png in Resources */,
 				FC39122915853FE4007E0942 /* desmond-logo-114.png in Resources */,
+				FC9F574D15855ED9002CB5A3 /* goals_256.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,8 @@
     CGRect promptLabelFrame = self.promptLabel.frame;
     CGRect countDownLabelFrame = self.countdownLabel.frame;
     CGRect codeTextFieldFrame = self.codeTextField.frame;
+    CGRect leaderbordFrame = leaderboardButton.frame;
+    CGRect achievementsFrame = achievementsButton.frame;
     
     codeLabelFrame.origin.y += slideAmount;
     codeNameLabelFrame.origin.y += slideAmount;
@@ -47,6 +49,8 @@
     promptLabelFrame.origin.y += slideAmount;
     countDownLabelFrame.origin.y += slideAmount;
     codeTextFieldFrame.origin.y += slideAmount;
+    leaderbordFrame.origin.y += slideAmount;
+    achievementsFrame.origin.y += slideAmount;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -57,6 +61,8 @@
     [self.topMessage setFrame:topMessageLabelFrame];
     [self.promptLabel setFrame:promptLabelFrame];
     [self.countdownLabel setFrame:countDownLabelFrame];
+    [leaderboardButton setFrame:leaderbordFrame];
+    [achievementsButton setFrame:achievementsFrame];
     [UIView commitAnimations];
 }
 
@@ -76,6 +82,8 @@
     CGRect promptLabelFrame = self.promptLabel.frame;
     CGRect countDownLabelFrame = self.countdownLabel.frame;
     CGRect codeTextFieldFrame = self.codeTextField.frame;
+    CGRect leaderbordFrame = leaderboardButton.frame;
+    CGRect achievementsFrame = achievementsButton.frame;
     
     codeLabelFrame.origin.y -= slideAmount;
     codeNameLabelFrame.origin.y -= slideAmount;
@@ -83,6 +91,8 @@
     promptLabelFrame.origin.y -= slideAmount;
     countDownLabelFrame.origin.y -= slideAmount;
     codeTextFieldFrame.origin.y -= slideAmount;
+    leaderbordFrame.origin.y -= slideAmount;
+    achievementsFrame.origin.y -= slideAmount;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -93,6 +103,8 @@
     [self.topMessage setFrame:topMessageLabelFrame];
     [self.promptLabel setFrame:promptLabelFrame];
     [self.countdownLabel setFrame:countDownLabelFrame];
+    [leaderboardButton setFrame:leaderbordFrame];
+    [achievementsButton setFrame:achievementsFrame];
     [UIView commitAnimations];
 }
 
@@ -490,12 +502,27 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(IBAction)reportScoreButton:(id)sender{
-    [self reportScore:12 forCategory:@"com.igvsoft.desmondproject.savedworldleaderboard"];
-}
-
 -(IBAction)showLeaderboardButton:(id)sender{
     [self showLeaderboard];
+}
+
+- (void) showAchievements
+{
+    GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+    if (achievements != nil)
+    {
+        achievements.achievementDelegate = self;
+        [self presentModalViewController: achievements animated: YES];
+    }
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction)showAchievementsButton:(id)sender{
+    [self showAchievements];
 }
 
 -(IBAction)showInAppPurchaseOptionsButton:(id)sender{
