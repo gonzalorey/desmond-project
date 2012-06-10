@@ -122,6 +122,40 @@
      */
 }
 
+- (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent
+{
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        [achievement reportAchievementWithCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 // Retain the achievement object and try again later (not shown).
+             }
+         }];
+    }
+}
+
+- (void) loadAchievements
+{    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+    if (error != nil)
+    {
+        // handle errors
+    }
+    if (achievements != nil)
+    {
+        // process the array of achievements.
+        if ([achievements count] == 14) {
+            //Achievement freak
+            [self reportAchievementIdentifier:@"com.igvsoft.freak" percentComplete:100.0];
+            
+        }
+    }
+}];
+}
+
 - (void) authenticateLocalPlayer
 {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -131,6 +165,7 @@
         }
         if (localPlayer.isAuthenticated)
         {
+            [self loadAchievements];
             // Perform additional tasks for the authenticated player.
             NSLog(@"Authenticated: %@",localPlayer.alias);
         }
