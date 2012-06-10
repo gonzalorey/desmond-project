@@ -8,13 +8,16 @@
 
 #import "WelcomeViewController.h"
 
-@interface WelcomeViewController ()
+@interface WelcomeViewController (){
+    IBOutlet UIButton * saveTheWorldButton;
+}
 
+@property (nonatomic, retain) IBOutlet UIButton * saveTheWorldButton;
 @end
 
 @implementation WelcomeViewController
 
-@synthesize delegate = _delegate;
+@synthesize delegate = _delegate, saveTheWorldButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +36,7 @@
     int highScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"DesmondHighScore"];
     
     highScoreLabel.text = [NSString stringWithFormat:@"%d",highScore];
+    [self designButtons];
 }
 
 - (void)viewDidUnload
@@ -70,5 +74,17 @@
     [self.delegate establishCountdown];
     [self.delegate dismissModalViewControllerAnimated:YES];
 }
+
+-(void)designButtons{
+    UIImage *buttonImage = [[UIImage imageNamed:@"blackButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blackButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    // Set the background for any states you plan to use
+    [self.saveTheWorldButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.saveTheWorldButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    
+}
+
 
 @end

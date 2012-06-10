@@ -15,7 +15,7 @@
 @implementation ViewController
 
 @synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer,
-    remindersLeftLabel;
+    remindersLeftLabel, needHelpButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -198,6 +198,18 @@
     [self initSound];
     
     [self updateRemaindersLabel];
+    [self designButtons];
+}
+
+-(void)designButtons{
+    UIImage *buttonImage = [[UIImage imageNamed:@"blackButton.png"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlight = [[UIImage imageNamed:@"blackButtonHighlight.png"]
+                                     resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    // Set the background for any states you plan to use
+    [self.needHelpButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.needHelpButton setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+
 }
 
 - (void)viewDidUnload
@@ -244,6 +256,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.codeTextField.text = @"";
     [super viewWillAppear:animated];
 
     

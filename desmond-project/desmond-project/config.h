@@ -18,7 +18,7 @@
 #define LEVELS_UNDER_FOUR_MINS 2
 #define LEVELS_UNDER_HOUR 6
 
-#define INPUT_WINDOW   60*4
+#define INPUT_WINDOW   FOUR_MIN
 
 #define TICK_FILE_PATH  @"tick"
 #define STILL_ALIVE_FILE_PATH  @"stillAlive"

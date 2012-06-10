@@ -40,8 +40,11 @@
     
     CFURLRef		deathSoundFileURLRef;
 	SystemSoundID	deathSoundFileObject;
+    
+    IBOutlet UIButton * needHelpButton;
 }
 
+@property(nonatomic, retain) IBOutlet UIButton * needHelpButton;
 @property(nonatomic, retain) UILabel * countdownLabel;
 @property(nonatomic, retain) UITextField * codeTextField;
 @property(nonatomic, retain) NSDate * countdownDate;
@@ -74,4 +77,5 @@
 -(void) reportScore: (int64_t) score forCategory: (NSString*) category;
 - (void)initSound;
 - (void) updateRemaindersLabel;
+-(void)designButtons;
 @end
