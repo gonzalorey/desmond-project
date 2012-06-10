@@ -110,6 +110,7 @@
 -(void)nextLevel{
     self.levelsPassed = self.levelsPassed + 1;
     self.countdownDate = nil;
+    self.codeTextField.text = @"";
     [self saveUserPreferences];
     [self establishCountdown];
     
@@ -295,7 +296,8 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self resetData];    
+    self.codeTextField.text = @"";
+    [self resetData];
 }
 
 - (void)willPresentAlertView:(UIAlertView *)alertView
