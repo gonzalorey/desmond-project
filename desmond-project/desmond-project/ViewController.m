@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "IAPHelper.h"
+#import "config.h"
+#import "WelcomeViewController.h"
 #import "StoreViewController.h"
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel;
 
 - (void)didReceiveMemoryWarning
 {

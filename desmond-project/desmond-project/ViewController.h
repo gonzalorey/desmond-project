@@ -37,6 +37,10 @@
 @property(nonatomic, assign) Boolean resetViewShown;
 @property(nonatomic, retain) UILabel *codeLabel;
 @property(nonatomic, retain) UILabel *codeNameLabel;
+@property(nonatomic, retain) UILabel *topMessage;
+@property(nonatomic, retain) UILabel *promptLabel;
+@property(nonatomic, retain) UILabel *scoreLabel;
+@property(nonatomic, assign) int clearanceCode;
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
@@ -50,4 +54,5 @@
 -(void)enableTextField:(NSTimeInterval)time;
 -(Boolean)checkCode;
 -(void)nextLevel;
+-(void) reportScore: (int64_t) score forCategory: (NSString*) category;
 @end
