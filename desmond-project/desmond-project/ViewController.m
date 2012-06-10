@@ -11,7 +11,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, iaph = _iaph;
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,13 +43,13 @@
                                  @"com.igvsoft.desmondproject.1reminder", 
                                  nil];
     
-    IAPHelper *iaph = [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers];
+    self.iaph = [[IAPHelper alloc] initWithProductIdentifiers:productIdentifiers];
     
-    if(iaph.products == nil) {
+    if(self.iaph.products == nil) {
         
         NSLog(@"ABOUT TO SHOW THE STUFF...");
         
-        [iaph requestProducts];
+        [self.iaph requestProducts];
     }
 }
 

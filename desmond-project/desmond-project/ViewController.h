@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
+#import "IAPHelper.h"
 
 @interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate>{
 
@@ -18,6 +19,8 @@
     int levelsPassed;
     NSTimer * timer;
     Boolean resetViewShown;
+    
+    IAPHelper * _iaph;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -26,6 +29,7 @@
 @property(nonatomic, assign) int levelsPassed;
 @property(nonatomic, retain) NSTimer* timer;
 @property(nonatomic, assign) Boolean resetViewShown;
+@property(nonatomic, retain) IAPHelper * iaph;
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
