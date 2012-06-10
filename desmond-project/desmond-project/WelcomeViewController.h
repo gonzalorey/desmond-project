@@ -18,4 +18,5 @@
 
 @property(nonatomic, retain) ViewController * delegate;
 
+-(void)designButtons;
 @end
