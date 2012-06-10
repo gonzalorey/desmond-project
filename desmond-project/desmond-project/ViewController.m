@@ -98,9 +98,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
-    if([self checkCode])
+    if([self checkCode]) {
         [self nextLevel];
-    else
+        AudioServicesPlaySystemSound(stillAliveSoundFileObject);
+    } else
         [self endTheWorld];
     return YES;
 }
@@ -135,6 +136,21 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+- (void)initSound
+{
+    NSURL *tickSound   = [[NSBundle mainBundle] URLForResource: TICK_FILE_PATH
+                                                 withExtension: SOUND_TYPE];
+    NSURL *stillAliveSound   = [[NSBundle mainBundle] URLForResource: STILL_ALIVE_FILE_PATH
+                                                 withExtension: SOUND_TYPE];
+    // Store the URL as a CFURLRef instance
+    tickSoundFileURLRef = (__bridge_retained CFURLRef) tickSound;
+    stillAliveSoundFileURLRef = (__bridge_retained CFURLRef) stillAliveSound;
+    
+    // Create a system sound object representing the sound file.
+    AudioServicesCreateSystemSoundID (tickSoundFileURLRef, &tickSoundFileObject);
+    AudioServicesCreateSystemSoundID (stillAliveSoundFileURLRef, &stillAliveSoundFileObject);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -163,6 +179,9 @@
     codeTextFieldOriginalPosition = self.codeTextField.frame.origin;
     codeLabelOriginalPosition = self.codeLabel.frame.origin;
     codeNameLabelOriginalPosition = self.codeNameLabel.frame.origin;
+    
+    // init ticking sound effect    
+    [self initSound];
 }
 
 - (void)viewDidUnload
@@ -181,10 +200,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil];
+    AudioServicesDisposeSystemSoundID(tickSoundFileObject);
+    CFRelease (tickSoundFileURLRef);
 }
 
 - (void)dealloc
 {
+    AudioServicesDisposeSystemSoundID (tickSoundFileObject);
+    CFRelease (tickSoundFileURLRef);
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillShowNotification 
                                                   object:nil]; 
@@ -279,7 +302,7 @@
     NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
     if(interval <= 0 && countdownDate != nil)
     {
-        [self endTheWorld];   
+        [self endTheWorld]; 
         return;
     }else
         [self enableTextField:interval];
@@ -292,6 +315,10 @@
     
     self.countdownLabel.text = formattedDate;
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    
+    if(interval <= INPUT_WINDOW && countdownDate != nil) { 
+        AudioServicesPlaySystemSound(tickSoundFileObject);
+    }
 }
 
 -(void)enableTextField:(NSTimeInterval)time{
