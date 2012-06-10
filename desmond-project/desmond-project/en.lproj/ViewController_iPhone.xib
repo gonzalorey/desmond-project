@@ -45,6 +45,10 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="602986309"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4wMTE3NjQ3MDcwNCAwIDAAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -178,6 +182,7 @@
 						<string key="NSFrame">{{20, 400}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="704219570"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -247,7 +252,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Enter the code in the four minutes before the time ends to save the world...</string>
+						<string key="IBUIText">If you fail to enter the code during the final 4 minutes, the earth will be destroyed!</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -338,6 +343,7 @@
 						<string key="NSFrame">{{193, 400}, {107, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -360,8 +366,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="248086191"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC4xODEzNjQ2Mzk5IDAuMTgxMzY0NjM5OSAwLjE4MTM2NDYzOTkAA</bytes>
+					<int key="NSColorSpace">2</int>
+					<bytes key="NSRGB">MCAwLjAxMTc2NDcwNzA0IDAuMDAzOTIxNTY4ODU5AA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">

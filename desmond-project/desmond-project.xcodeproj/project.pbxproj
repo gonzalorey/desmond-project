@@ -11,6 +11,9 @@
 		0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034F325158486C2003C2C57 /* StoreKit.framework */; };
 		00BB160B1584D0140043F58C /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BB16081584D0140043F58C /* StoreViewController.xib */; };
 		00BB160C1584D0140043F58C /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BB160A1584D0140043F58C /* StoreViewController.m */; };
+		8B74CE4515850F19004D5564 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B74CE4415850F19004D5564 /* AudioToolbox.framework */; };
+		8B74CE5515851D52004D5564 /* stillAlive.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B74CE5415851D52004D5564 /* stillAlive.wav */; };
+		8BC6FB0F15850163007F9113 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6FB0E15850163007F9113 /* tick.wav */; };
 		C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1115845CBF00112790 /* UIKit.framework */; };
 		C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1315845CBF00112790 /* Foundation.framework */; };
 		C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1515845CBF00112790 /* CoreGraphics.framework */; };
@@ -19,6 +22,10 @@
 		C006AE2215845CBF00112790 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2115845CBF00112790 /* AppDelegate.m */; };
 		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
 		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
+		C0F2A75A1584F2A60049E52D /* BoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F2A7581584F2A60049E52D /* BoomViewController.m */; };
+		C0F2A75B1584F2A60049E52D /* BoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A7591584F2A60049E52D /* BoomViewController.xib */; };
+		C0F2A75F1584FA3B0049E52D /* skull-head-danger-bones.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */; };
+		C0F2A76515851F330049E52D /* death.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C0F2A76415851F330049E52D /* death.m4a */; };
 		FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FC39120515850ECA007E0942 /* MBProgressHUD.m */; };
 		FC391209158516C8007E0942 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC391208158516C8007E0942 /* StoreCell.m */; };
 		FC39120B158516E0007E0942 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC39120A158516E0007E0942 /* StoreCell.xib */; };
@@ -35,6 +42,9 @@
 		00BB16081584D0140043F58C /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
 		00BB16091584D0140043F58C /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		00BB160A1584D0140043F58C /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
+		8B74CE4415850F19004D5564 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8B74CE5415851D52004D5564 /* stillAlive.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = stillAlive.wav; path = "desmond-project/stillAlive.wav"; sourceTree = "<group>"; };
+		8BC6FB0E15850163007F9113 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tick.wav; path = "desmond-project/tick.wav"; sourceTree = "<group>"; };
 		C006AE0D15845CBF00112790 /* desmond-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "desmond-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C006AE1115845CBF00112790 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C006AE1315845CBF00112790 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,6 +59,11 @@
 		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		C0BC6A2D15849CBD0079779A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		C0F2A7571584F2A60049E52D /* BoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoomViewController.h; sourceTree = "<group>"; };
+		C0F2A7581584F2A60049E52D /* BoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoomViewController.m; sourceTree = "<group>"; };
+		C0F2A7591584F2A60049E52D /* BoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoomViewController.xib; sourceTree = "<group>"; };
+		C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "skull-head-danger-bones.jpg"; sourceTree = "<group>"; };
+		C0F2A76415851F330049E52D /* death.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = death.m4a; sourceTree = "<group>"; };
 		FC39120415850ECA007E0942 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		FC39120515850ECA007E0942 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		FC391207158516C8007E0942 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
@@ -66,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B74CE4515850F19004D5564 /* AudioToolbox.framework in Frameworks */,
 				FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */,
 				0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */,
 				C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */,
@@ -77,9 +93,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8BC6FB101585016A007F9113 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B74CE5415851D52004D5564 /* stillAlive.wav */,
+				8BC6FB0E15850163007F9113 /* tick.wav */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C006AE0215845CBE00112790 = {
 			isa = PBXGroup;
 			children = (
+				8BC6FB101585016A007F9113 /* Resources */,
 				C006AE1715845CBF00112790 /* desmond-project */,
 				C006AE1015845CBF00112790 /* Frameworks */,
 				C006AE0E15845CBF00112790 /* Products */,
@@ -97,6 +123,7 @@
 		C006AE1015845CBF00112790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B74CE4415850F19004D5564 /* AudioToolbox.framework */,
 				0034F325158486C2003C2C57 /* StoreKit.framework */,
 				FC40B8C115846BDD00EF23D4 /* GameKit.framework */,
 				C006AE1115845CBF00112790 /* UIKit.framework */,
@@ -125,6 +152,9 @@
 				FC40B8D51584B4D500EF23D4 /* WelcomeViewController.h */,
 				FC40B8D61584B4D500EF23D4 /* WelcomeViewController.m */,
 				FC40B8D71584B4D500EF23D4 /* WelcomeViewController.xib */,
+				C0F2A7571584F2A60049E52D /* BoomViewController.h */,
+				C0F2A7581584F2A60049E52D /* BoomViewController.m */,
+				C0F2A7591584F2A60049E52D /* BoomViewController.xib */,
 				C006AE1815845CBF00112790 /* Supporting Files */,
 			);
 			path = "desmond-project";
@@ -133,6 +163,8 @@
 		C006AE1815845CBF00112790 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0F2A76415851F330049E52D /* death.m4a */,
+				C0F2A75E1584FA3B0049E52D /* skull-head-danger-bones.jpg */,
 				C006AE1915845CBF00112790 /* desmond-project-Info.plist */,
 				C006AE1A15845CBF00112790 /* InfoPlist.strings */,
 				C006AE1D15845CBF00112790 /* main.m */,
@@ -217,6 +249,7 @@
 				0034F3231584867C003C2C57 /* IAPHelper.m in Sources */,
 				FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */,
 				00BB160C1584D0140043F58C /* StoreViewController.m in Sources */,
+				C0F2A75A1584F2A60049E52D /* BoomViewController.m in Sources */,
 				FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */,
 				FC391209158516C8007E0942 /* StoreCell.m in Sources */,
 			);

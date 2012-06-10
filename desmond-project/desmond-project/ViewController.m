@@ -98,9 +98,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.codeTextField resignFirstResponder];
-    if([self checkCode])
+    if([self checkCode]) {
         [self nextLevel];
-    else
+        AudioServicesPlaySystemSound(stillAliveSoundFileObject);
+    } else
         [self endTheWorld];
     return YES;
 }
@@ -135,6 +136,27 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+- (void)initSound
+{
+    NSURL *tickSound   = [[NSBundle mainBundle] URLForResource: TICK_FILE_PATH
+                                                 withExtension: SOUND_TYPE];
+    NSURL *stillAliveSound   = [[NSBundle mainBundle] URLForResource: STILL_ALIVE_FILE_PATH
+                                                 withExtension: SOUND_TYPE];
+    
+    NSURL * deathSound = [[NSBundle mainBundle] URLForResource:DEATH_SOUND withExtension:@"m4a"];
+    
+    deathSoundFileURLRef = (__bridge_retained CFURLRef)deathSound;
+    
+    // Store the URL as a CFURLRef instance
+    tickSoundFileURLRef = (__bridge_retained CFURLRef) tickSound;
+    stillAliveSoundFileURLRef = (__bridge_retained CFURLRef) stillAliveSound;
+    
+    // Create a system sound object representing the sound file.
+    AudioServicesCreateSystemSoundID (tickSoundFileURLRef, &tickSoundFileObject);
+    AudioServicesCreateSystemSoundID (stillAliveSoundFileURLRef, &stillAliveSoundFileObject);
+    AudioServicesCreateSystemSoundID(deathSoundFileURLRef, &deathSoundFileObject);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -163,6 +185,9 @@
     codeTextFieldOriginalPosition = self.codeTextField.frame.origin;
     codeLabelOriginalPosition = self.codeLabel.frame.origin;
     codeNameLabelOriginalPosition = self.codeNameLabel.frame.origin;
+    
+    // init ticking sound effect    
+    [self initSound];
 }
 
 - (void)viewDidUnload
@@ -181,10 +206,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil];
+    AudioServicesDisposeSystemSoundID(tickSoundFileObject);
+    CFRelease (tickSoundFileURLRef);
 }
 
 - (void)dealloc
 {
+    AudioServicesDisposeSystemSoundID (tickSoundFileObject);
+    CFRelease (tickSoundFileURLRef);
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillShowNotification 
                                                   object:nil]; 
@@ -200,7 +229,7 @@
     wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     wel.delegate = self;
     
-    [self presentModalViewController:wel animated:YES];
+    [self presentModalViewController:wel animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -246,6 +275,7 @@
 
 -(void)startCountdown{
     [self updateCountdownLabel];
+    [self.timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
     
 }
@@ -278,7 +308,7 @@
     NSTimeInterval interval = [self.countdownDate timeIntervalSinceDate:nowDate];
     if(interval <= 0 && countdownDate != nil)
     {
-        [self endTheWorld];   
+        [self endTheWorld]; 
         return;
     }else
         [self enableTextField:interval];
@@ -291,6 +321,10 @@
     
     self.countdownLabel.text = formattedDate;
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    
+    if(interval <= INPUT_WINDOW && countdownDate != nil) { 
+        AudioServicesPlaySystemSound(tickSoundFileObject);
+    }
 }
 
 -(void)enableTextField:(NSTimeInterval)time{
@@ -313,8 +347,11 @@
     self.invalidateTimer = YES;
     self.countdownLabel.text = @"BOOM";
     [self resetData];
+    BoomViewController *boomVC = [[BoomViewController alloc] initWithNibName:@"BoomViewController" bundle:nil];
 
-    [self showResults];
+    AudioServicesPlaySystemSound(deathSoundFileObject);
+    [self presentModalViewController:boomVC animated:NO];
+//    [self showResults];
 }
 
 -(void)showResults{
@@ -346,8 +383,8 @@
 -(NSTimeInterval)generateNextRandomInterval{
     int offset;
     
-    if (self.levelsPassed < LEVELS_UNDER_FIVE_MIN) {
-        offset = FIVE_MIN;
+    if (self.levelsPassed < LEVELS_UNDER_FOUR_MINS) {
+        offset = FOUR_MIN;
     }else if (self.levelsPassed <= LEVELS_UNDER_HOUR) {
        offset = ONE_HOUR;
     }else {
