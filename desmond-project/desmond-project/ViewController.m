@@ -11,7 +11,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -21,18 +21,124 @@
 
 #pragma mark - View lifecycle
 
+
+- (void)keyboardWillHide:(NSNotification *)n
+{    
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
+    CGRect codeLabelFrame = self.codeLabel.frame;
+    CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    
+    codeTextFieldFrame.origin = codeTextFieldOriginalPosition;
+    codeLabelFrame.origin = codeLabelOriginalPosition;
+    codeNameLabelFrame.origin = codeNameLabelOriginalPosition;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    // The kKeyboardAnimationDuration I am using is 0.3
+    [UIView setAnimationDuration:0.3];
+    [self.codeTextField setFrame:codeTextFieldFrame];
+    [self.codeLabel setFrame:codeLabelFrame];
+    [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [UIView commitAnimations];
+//    
+    
+    NSLog(@"keyboardWillHide");
+}
+
+- (void) printElement:(UIView *)v
+{
+    NSLog(@"%@ frame size: %@, origin: %@", v, NSStringFromCGSize(v.frame.size), NSStringFromCGPoint(v.frame.origin));
+}
+
+- (void)keyboardWillShow:(NSNotification *)n
+{   
+    NSDictionary* userInfo = [n userInfo];
+
+//    // get the size of the keyboard
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    CGPoint keyboardOrigin = CGPointMake(0, 216);
+
+    CGRect codeTextFieldFrame = self.codeTextField.frame;
+
+//    NSLog(@"keyboard size: %@, origin: %@", NSStringFromCGSize(keyboardSize), NSStringFromCGPoint(keyboardOrigin));
+    
+    codeTextFieldFrame.origin.y = keyboardSize.height-codeTextFieldFrame.size.height;
+    
+    CGRect codeLabelFrame = self.codeLabel.frame;
+    CGRect codeNameLabelFrame = self.codeNameLabel.frame;
+    
+    codeLabelFrame.origin.y = codeTextFieldFrame.origin.y - codeLabelFrame.size.height;
+    codeNameLabelFrame.origin.y = codeLabelFrame.origin.y;
+//    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    [self.codeTextField setFrame:codeTextFieldFrame];
+    [self.codeLabel setFrame:codeLabelFrame];
+    [self.codeNameLabel setFrame:codeNameLabelFrame];
+    [UIView commitAnimations];
+//    
+//    keyboardIsShown = YES;
+    NSLog(@"keyboardWillShow");
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.codeTextField resignFirstResponder];
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     [self establishCountdown];
+
+	// Do any additional setup after loading the view, typically from a nib.
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification 
+                                               object:self.view.window];
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification 
+                                               object:self.view.window];
+    
+    codeTextFieldOriginalPosition = self.codeTextField.frame.origin;
+    codeLabelOriginalPosition = self.codeLabel.frame.origin;
+    codeNameLabelOriginalPosition = self.codeNameLabel.frame.origin;
 }
 
 - (void)viewDidUnload
 {
+    codeLabel = nil;
+    codeNameLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     [self.timer invalidate];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

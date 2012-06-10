@@ -9,15 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 
-@interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate>{
-
+@interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, UITextFieldDelegate>{
 
     IBOutlet UILabel * countdownLabel;
     IBOutlet UITextField * codeTextField;
+    IBOutlet UILabel *codeLabel;
+    IBOutlet UILabel *codeNameLabel;
     NSDate * countdownDate;
     int levelsPassed;
     NSTimer * timer;
     Boolean resetViewShown;
+    CGPoint codeTextFieldOriginalPosition;
+    CGPoint codeLabelOriginalPosition;
+    CGPoint codeNameLabelOriginalPosition;
 }
 
 @property(nonatomic, retain) UILabel * countdownLabel;
@@ -26,6 +30,9 @@
 @property(nonatomic, assign) int levelsPassed;
 @property(nonatomic, retain) NSTimer* timer;
 @property(nonatomic, assign) Boolean resetViewShown;
+@property(nonatomic, retain) UILabel *codeLabel;
+@property(nonatomic, retain) UILabel *codeNameLabel;
+
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
