@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "IAPHelper.h"
 #import "config.h"
+#import "WelcomeViewController.h"
 
 @implementation ViewController
 
@@ -128,7 +129,10 @@
 {
     [super viewDidLoad];
 
-    [self establishCountdown];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"intervalDate"];
+    
+    [self retrieveUserPreferences];
+    
     self.codeTextField.clearsOnBeginEditing = YES;
 
 	// Do any additional setup after loading the view, typically from a nib.
@@ -178,6 +182,14 @@
 
 }
 
+-(void)showWelcomeScreen{
+    WelcomeViewController * wel = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+    wel.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    wel.delegate = self;
+    
+    [self presentModalViewController:wel animated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -199,6 +211,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!self.countdownDate) {
+        //show Welcome screen
+        [self showWelcomeScreen];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -290,7 +307,7 @@
 
 -(void)showResults{
     if(!self.resetViewShown){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oh No!" message:@"The world is over!" delegate:self cancelButtonTitle:@"Restart" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Oh No!" message:@"The world is over!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [alert show];
     }
 }
@@ -298,6 +315,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     self.codeTextField.text = @"";
     [self resetData];
+    [self showWelcomeScreen];
 }
 
 - (void)willPresentAlertView:(UIAlertView *)alertView
@@ -311,8 +329,7 @@
     self.levelsPassed = 0;
     self.resetViewShown = false;
     [self.timer invalidate];
-    [self saveUserPreferences];    
-    [self establishCountdown];
+    [self saveUserPreferences];
 }
 
 -(NSTimeInterval)generateNextRandomInterval{

@@ -170,7 +170,7 @@
 					<object class="IBUIButton" id="703382890">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 403}, {37, 37}}</string>
+						<string key="NSFrame">{{20, 400}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -335,7 +335,9 @@
 					<bytes key="NSRGB">MC4xODEzNjQ2Mzk5IDAuMTgxMzY0NjM5OSAwLjE4MTM2NDYzOTkAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">2</int>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -444,9 +446,9 @@
 							<reference ref="459888204"/>
 							<reference ref="622458261"/>
 							<reference ref="248086191"/>
-							<reference ref="703382890"/>
 							<reference ref="838762392"/>
 							<reference ref="572084945"/>
+							<reference ref="703382890"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
