@@ -7,6 +7,8 @@
 //
 
 #import "StoreViewController.h"
+#import "MBProgressHUD.h"
+#import "StoreCell.h"
 
 @implementation StoreViewController
 
@@ -17,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        cellLoader = [UINib nibWithNibName:@"StoreCell" bundle:[NSBundle mainBundle]];
     }
     return self;
 }
@@ -78,7 +81,17 @@
     NSString *productIdentifier = (NSString *) notification.object;
     NSLog(@"Purchased: %@", productIdentifier);
     
-    [uiTableView reloadData];    
+    [uiTableView reloadData];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" 
+                                                    message:@"You successfully purchased the reminders" 
+                                                   delegate:nil 
+                                          cancelButtonTitle:nil 
+                                          otherButtonTitles:@"OK", nil];
+    
+    [alert show];
+    
+    [MBProgressHUD hideWaitAlertInView:self.view];
     
 }
 
@@ -97,6 +110,8 @@
         [alert show];
     }
     
+    [MBProgressHUD hideWaitAlertInView:self.view];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -112,28 +127,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//	// Try to retrieve from the table view a now-unused cell with the given identifier.
-//	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier];
-//	
-//	// If no cell is available, create a new one using the given identifier.
-//	if (cell == nil) {
-//		// Use the default cell style.
-//		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
-//	}
-//	
-    
+{	
     // Cells population
-    NSLog(@"y??? Que pasa?!?!?");
-    
-    static NSString *MyIdentifier = @"MyIdentifier";
-	
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
+    StoreCell *cell = (StoreCell *)[tableView dequeueReusableCellWithIdentifier:@"StoreCell"];
+    if (!cell)
+    {
+        NSArray *topLevelItems = [cellLoader instantiateWithOwner:self options:nil];
+        cell = [topLevelItems objectAtIndex:0];
     }
-    
-//    cell.textLabel.text = @"SARASA";
     
     // Set up the cell.
     SKProduct *product = [[IAPHelper sharedHelper].products objectAtIndex:indexPath.row];
@@ -150,21 +151,20 @@
     [numberFormatter setLocale:product.priceLocale];
     NSString *formattedString = [numberFormatter stringFromNumber:product.price];
     
-    cell.textLabel.text = product.localizedTitle;
-    cell.detailTextLabel.text = formattedString;
+    cell.reminderNumberLabel.text = [product.localizedTitle substringFromIndex:1];
+    cell.buyButton.titleLabel.text = formattedString;
+    [cell.buyButton setTitle:formattedString forState:UIControlStateNormal];
+    [cell.buyButton setTitle:formattedString forState:UIControlStateHighlighted];
+    [cell.buyButton setTitle:formattedString forState:UIControlStateSelected];
+    cell.buyButton.tag = indexPath.row;
+    [cell.buyButton addTarget:self action:@selector(buyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    if ([[IAPHelper sharedHelper].purchasedProducts containsObject:product.productIdentifier]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.accessoryView = nil;
-    } else {        
-        UIButton *buyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buyButton.frame = CGRectMake(0, 0, 72, 37);
-        [buyButton setTitle:@"Buy" forState:UIControlStateNormal];
-        buyButton.tag = indexPath.row;
-        [buyButton addTarget:self action:@selector(buyButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.accessoryView = buyButton;     
-    }	
+//    if ([[IAPHelper sharedHelper].purchasedProducts containsObject:product.productIdentifier]) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        cell.accessoryView = nil;
+//    } else {        
+    
+//    }	
     
     return cell;
 }
@@ -174,8 +174,14 @@
     UIButton *buyButton = (UIButton *)sender;    
     SKProduct *product = [[IAPHelper sharedHelper].products objectAtIndex:buyButton.tag];
     
+    [MBProgressHUD showWaitAlert:@"Loading" inView:self.view];
+    
     NSLog(@"Buying %@...", product.productIdentifier);
     [[IAPHelper sharedHelper] buyProductIdentifier:product.productIdentifier];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
