@@ -13,7 +13,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph,clearanceCode, promptLabel, topMessage, scoreLabel, scoreValue;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph,clearanceCode, promptLabel, topMessage, scoreLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -115,6 +115,15 @@
     [self saveUserPreferences];
     [self establishCountdown];
     
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
+    
+    int prevHighScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"DesmondHighScore"];
+    
+    if (self.levelsPassed > prevHighScore) {
+        [[NSUserDefaults standardUserDefaults] setInteger:self.levelsPassed forKey:@"DesmondHighScore"];
+        [self reportScore:self.levelsPassed forCategory:@"com.igvsoft.desmondproject.savedworldleaderboard"];
+    }
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -132,6 +141,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"intervalDate"];
     
     [self retrieveUserPreferences];
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
     
     self.codeTextField.clearsOnBeginEditing = YES;
 
@@ -283,8 +294,6 @@
     NSString* formattedDate = [NSString stringWithFormat:@"%02d:%02d:%02d", [conversionInfo hour], [conversionInfo minute], 
                                [conversionInfo second]];
     
-    
-    self.scoreValue.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
     self.countdownLabel.text = formattedDate;
 }
 
@@ -333,6 +342,8 @@
     self.resetViewShown = false;
     [self.timer invalidate];
     [self saveUserPreferences];
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
