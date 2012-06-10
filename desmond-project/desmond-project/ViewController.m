@@ -11,6 +11,7 @@
 #import "config.h"
 #import "WelcomeViewController.h"
 #import "StoreViewController.h"
+#import <GameKit/GameKit.h>
 
 @implementation ViewController
 
@@ -108,6 +109,23 @@
     [UIView commitAnimations];
 }
 
+- (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent
+{
+    GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier: identifier];
+    if (achievement)
+    {
+        achievement.percentComplete = percent;
+        achievement.showsCompletionBanner = YES;
+        [achievement reportAchievementWithCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 // Retain the achievement object and try again later (not shown).
+             }
+         }];
+    }
+}
+
 -(void)checkForAchievements{
     [self checkLifeAchievements];
     [self checkDeathAchievements];
@@ -144,18 +162,27 @@
     else
         buzzer = NO;
     
-    if (buzzer == YES) 
+    if (buzzer == YES){
         NSLog(@"*** buzzer achieved");
-    
+        [self reportAchievementIdentifier:@"com.igvsoft.buzzer" percentComplete:100.0];
+    }
     
 }
 
 -(void)milestoneLevelAchieved:(int)level{
     NSLog(@"*** milestone level achieved: %i", level);
+    
+    NSString * string = [NSString stringWithFormat:@"com.igvsoft.saved%d",level];
+    
+    [self reportAchievementIdentifier:string percentComplete:100.0];
 }
 
 -(void)deathTollLevelAchieved:(int)level{
     NSLog(@"*** deathToll level achieved: %i", level);
+    
+    NSString * string = [NSString stringWithFormat:@"com.igvsoft.died%d",level];
+    
+    [self reportAchievementIdentifier:string percentComplete:100.0];
 }
          
 
