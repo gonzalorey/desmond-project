@@ -16,6 +16,9 @@
     IBOutlet UITextField * codeTextField;
     IBOutlet UILabel *codeLabel;
     IBOutlet UILabel *codeNameLabel;
+    IBOutlet UILabel * topMessage;
+    IBOutlet UILabel * promptLabel;
+    IBOutlet UILabel * scoreLabel;
     NSDate * countdownDate;
     int levelsPassed;
     int clearanceCode;
@@ -37,6 +40,9 @@
 @property(nonatomic, retain) UILabel *codeNameLabel;
 @property(nonatomic, retain) IAPHelper * iaph;
 @property (nonatomic, assign) int clearanceCode;
+@property(nonatomic, retain) UILabel * topMessage;
+@property(nonatomic, retain) UILabel * promptLabel;
+@property(nonatomic, retain) UILabel * scoreLabel;
 
 
 -(void)establishCountdown;

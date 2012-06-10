@@ -11,6 +11,6 @@
 
 #define TIMESTEP    15
 
-#define INPUT_WINDOW   65*5
+#define INPUT_WINDOW   15
 
 #endif
