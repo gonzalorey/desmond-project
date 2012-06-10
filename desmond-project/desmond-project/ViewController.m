@@ -383,8 +383,8 @@
 -(NSTimeInterval)generateNextRandomInterval{
     int offset;
     
-    if (self.levelsPassed < LEVELS_UNDER_FIVE_MIN) {
-        offset = FIVE_MIN;
+    if (self.levelsPassed < LEVELS_UNDER_FOUR_MINS) {
+        offset = FOUR_MIN;
     }else if (self.levelsPassed <= LEVELS_UNDER_HOUR) {
        offset = ONE_HOUR;
     }else {
