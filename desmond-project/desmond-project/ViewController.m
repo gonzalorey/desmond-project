@@ -301,7 +301,7 @@
         if(time < INPUT_WINDOW)
         {
             [self.codeTextField setAlpha:1.0];
-          [self.codeTextField setEnabled:TRUE];   
+            [self.codeTextField setEnabled:TRUE];   
         }
         else{
             [self.codeTextField setAlpha:0.0];
