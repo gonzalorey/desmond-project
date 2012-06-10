@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0034F3231584867C003C2C57 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0034F3221584867C003C2C57 /* IAPHelper.m */; };
 		0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0034F325158486C2003C2C57 /* StoreKit.framework */; };
+		00BB160B1584D0140043F58C /* StoreViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BB16081584D0140043F58C /* StoreViewController_iPhone.xib */; };
+		00BB160C1584D0140043F58C /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BB160A1584D0140043F58C /* StoreViewController.m */; };
 		C006AE1215845CBF00112790 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1115845CBF00112790 /* UIKit.framework */; };
 		C006AE1415845CBF00112790 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1315845CBF00112790 /* Foundation.framework */; };
 		C006AE1615845CBF00112790 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C006AE1515845CBF00112790 /* CoreGraphics.framework */; };
@@ -27,6 +29,9 @@
 		0034F3211584867C003C2C57 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		0034F3221584867C003C2C57 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		0034F325158486C2003C2C57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		00BB16081584D0140043F58C /* StoreViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController_iPhone.xib; sourceTree = "<group>"; };
+		00BB16091584D0140043F58C /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		00BB160A1584D0140043F58C /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 		C006AE0D15845CBF00112790 /* desmond-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "desmond-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C006AE1115845CBF00112790 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C006AE1315845CBF00112790 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,7 +72,6 @@
 		C006AE0215845CBE00112790 = {
 			isa = PBXGroup;
 			children = (
-				0034F325158486C2003C2C57 /* StoreKit.framework */,
 				C006AE1715845CBF00112790 /* desmond-project */,
 				C006AE1015845CBF00112790 /* Frameworks */,
 				C006AE0E15845CBF00112790 /* Products */,
@@ -85,6 +89,7 @@
 		C006AE1015845CBF00112790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0034F325158486C2003C2C57 /* StoreKit.framework */,
 				FC40B8C115846BDD00EF23D4 /* GameKit.framework */,
 				C006AE1115845CBF00112790 /* UIKit.framework */,
 				C006AE1315845CBF00112790 /* Foundation.framework */,
@@ -101,6 +106,9 @@
 				0034F3221584867C003C2C57 /* IAPHelper.m */,
 				C006AE2015845CBF00112790 /* AppDelegate.h */,
 				C006AE2115845CBF00112790 /* AppDelegate.m */,
+				00BB16081584D0140043F58C /* StoreViewController_iPhone.xib */,
+				00BB16091584D0140043F58C /* StoreViewController.h */,
+				00BB160A1584D0140043F58C /* StoreViewController.m */,
 				C006AE2315845CBF00112790 /* ViewController.h */,
 				C006AE2415845CBF00112790 /* ViewController.m */,
 				C006AE2615845CBF00112790 /* ViewController_iPhone.xib */,
@@ -178,6 +186,7 @@
 				C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */,
 				FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */,
 				FC40B8D91584B4D500EF23D4 /* WelcomeViewController.xib in Resources */,
+				00BB160B1584D0140043F58C /* StoreViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +202,7 @@
 				C006AE2515845CBF00112790 /* ViewController.m in Sources */,
 				0034F3231584867C003C2C57 /* IAPHelper.m in Sources */,
 				FC40B8D81584B4D500EF23D4 /* WelcomeViewController.m in Sources */,
+				00BB160C1584D0140043F58C /* StoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

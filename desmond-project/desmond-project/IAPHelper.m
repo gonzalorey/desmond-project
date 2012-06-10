@@ -57,28 +57,28 @@
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     
-    NSLog(@"Received products results...");   
+//    NSLog(@"Received products results...");   
     self.products = response.products;
     
-    NSLog(@"Products fetch: %d", [response.products count]);
+//    NSLog(@"Products fetch: %d", [response.products count]);
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
     {
-        NSLog(@"Invalid product id: %@" , invalidProductId);
+//        NSLog(@"Invalid product id: %@" , invalidProductId);
     }
     
     for (SKProduct * p in response.products) {
-        NSLog(@"Product title: %@" , p.localizedTitle);
-        NSLog(@"Product description: %@" , p.localizedDescription);
-        NSLog(@"Product price: %@" , [self localizedPrice:p.price inLocale:p.priceLocale]);
-        NSLog(@"Product id: %@" , p.productIdentifier);
+//        NSLog(@"Product title: %@" , p.localizedTitle);
+//        NSLog(@"Product description: %@" , p.localizedDescription);
+//        NSLog(@"Product price: %@" , [self localizedPrice:p.price inLocale:p.priceLocale]);
+//        NSLog(@"Product id: %@" , p.productIdentifier);
     }
     
-    NSLog(@"They should have been printed so far...");
+//    NSLog(@"They should have been printed so far...");
 
     self.request = nil;    
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kProductsLoadedNotification object:_products];    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kProductsLoadedNotification object:nil];    
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didFailWithError:(SKProductsResponse *) 
