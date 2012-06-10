@@ -12,7 +12,7 @@
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph,clearanceCode, promptLabel, topMessage, scoreLabel;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph,clearanceCode, promptLabel, topMessage, scoreLabel, scoreValue;
 
 - (void)didReceiveMemoryWarning
 {
@@ -221,19 +221,21 @@
 }
 
 -(void)establishCountdown{
-
+    
         if(self.countdownDate == nil)
         {
             [self retrieveUserPreferences];
-            NSLog(@"Levels> %d",self.levelsPassed);
             if(self.countdownDate == nil){
                 NSTimeInterval interval = [self generateNextRandomInterval];
                 [self generateCode];
                 self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
+
+                
             }
             [self saveUserPreferences];
             [self updateCountdownLabel];
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+
         }
 }
 
@@ -264,6 +266,7 @@
                                [conversionInfo second]];
     
     
+    self.scoreValue.text = [NSString stringWithFormat:@"%d",self.levelsPassed];
     self.countdownLabel.text = formattedDate;
 }
 

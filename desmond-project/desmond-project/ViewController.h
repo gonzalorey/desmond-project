@@ -19,6 +19,7 @@
     IBOutlet UILabel * topMessage;
     IBOutlet UILabel * promptLabel;
     IBOutlet UILabel * scoreLabel;
+    IBOutlet UILabel * scoreValue;
     NSDate * countdownDate;
     int levelsPassed;
     int clearanceCode;
@@ -43,6 +44,7 @@
 @property(nonatomic, retain) UILabel * topMessage;
 @property(nonatomic, retain) UILabel * promptLabel;
 @property(nonatomic, retain) UILabel * scoreLabel;
+@property(nonatomic, retain) UILabel * scoreValue;
 
 
 -(void)establishCountdown;
