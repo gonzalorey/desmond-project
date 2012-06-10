@@ -18,6 +18,7 @@
     IBOutlet UILabel *codeNameLabel;
     NSDate * countdownDate;
     int levelsPassed;
+    int clearanceCode;
     NSTimer * timer;
     Boolean resetViewShown;
     CGPoint codeTextFieldOriginalPosition;
@@ -35,11 +36,14 @@
 @property(nonatomic, retain) UILabel *codeLabel;
 @property(nonatomic, retain) UILabel *codeNameLabel;
 @property(nonatomic, retain) IAPHelper * iaph;
+@property (nonatomic, assign) int clearanceCode;
+
 
 -(void)establishCountdown;
 -(NSTimeInterval)generateNextRandomInterval;
 -(void)updateCountdownLabel;
 -(void)saveUserPreferences;
+-(void)generateCode;
 -(void)retrieveUserPreferences;
 -(void)endTheWorld;
 -(void)showResults;

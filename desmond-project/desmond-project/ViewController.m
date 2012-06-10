@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "IAPHelper.h"
+#import "config.h"
 
 @implementation ViewController
 
-@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph;
+@synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, iaph = _iaph, clearanceCode;
 
 - (void)didReceiveMemoryWarning
 {
@@ -194,12 +195,17 @@
             [self retrieveUserPreferences];
             if(self.countdownDate == nil){
                 NSTimeInterval interval = [self generateNextRandomInterval];
+                [self generateCode];
                 self.countdownDate = [NSDate dateWithTimeIntervalSinceNow:interval];
             }
             [self saveUserPreferences];
             [self updateCountdownLabel];
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
         }
+}
+
+-(void)generateCode{
+    self.clearanceCode = arc4random();
 }
 
 -(void)updateCountdownLabel{
@@ -245,6 +251,7 @@
 {
     self.resetViewShown = true;
 }
+
 -(void)resetData
 {
     self.countdownDate = nil;
@@ -256,9 +263,10 @@
 }
 
 -(NSTimeInterval)generateNextRandomInterval{
-    int x = arc4random() % 15;
+    int x = (arc4random() % (TIMESTEP * (self.levelsPassed+1)))+TIMESTEP;
     return x;
 }
+
 
 -(void)saveUserPreferences{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
