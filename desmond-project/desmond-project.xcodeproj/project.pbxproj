@@ -18,6 +18,7 @@
 		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
 		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
 		FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC40B8C115846BDD00EF23D4 /* GameKit.framework */; };
+		FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FC40B8CE1584B00700EF23D4 /* game-center-logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		FC40B8C115846BDD00EF23D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		FC40B8CE1584B00700EF23D4 /* game-center-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game-center-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				C006AE1A15845CBF00112790 /* InfoPlist.strings */,
 				C006AE1D15845CBF00112790 /* main.m */,
 				C006AE1F15845CBF00112790 /* desmond-project-Prefix.pch */,
+				FC40B8CE1584B00700EF23D4 /* game-center-logo.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			files = (
 				C006AE1C15845CBF00112790 /* InfoPlist.strings in Resources */,
 				C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */,
+				FC40B8CF1584B00700EF23D4 /* game-center-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
