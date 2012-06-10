@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IAPHelper.h"
 
 #import "ViewController.h"
 #import <GameKit/GameKit.h>
@@ -23,6 +24,8 @@
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver: [IAPHelper sharedHelper]];
     
     [self authenticateLocalPlayer];
     
