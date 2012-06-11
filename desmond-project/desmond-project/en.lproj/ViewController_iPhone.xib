@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
+		<int key="IBDocument.SystemTarget">1280</int>
 		<string key="IBDocument.SystemVersion">11E53</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
 		<string key="IBDocument.AppKitVersion">1138.47</string>
@@ -171,6 +171,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIKeyboardType">4</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="126291739"/>
@@ -182,7 +183,7 @@
 						<string key="NSFrame">{{20, 0}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="272638481"/>
+						<reference key="NSNextKeyView" ref="106166553"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -204,11 +205,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">game-center-logo.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="552727361">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="232746568">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="14465085">
+						<object class="NSFont" key="IBUIFont" id="309974674">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -406,7 +407,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="272638481">
+					<object class="IBUIButton" id="106166553">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{260, 0}, {40, 40}}</string>
@@ -428,8 +429,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">goals_256.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="552727361"/>
-						<reference key="IBUIFont" ref="14465085"/>
+						<reference key="IBUIFontDescription" ref="232746568"/>
+						<reference key="IBUIFont" ref="309974674"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -541,7 +542,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">achievementsButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="272638481"/>
+						<reference key="destination" ref="106166553"/>
 					</object>
 					<int key="connectionID">41</int>
 				</object>
@@ -574,7 +575,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showAchievementsButton:</string>
-						<reference key="source" ref="272638481"/>
+						<reference key="source" ref="106166553"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -615,7 +616,7 @@
 							<reference ref="572084945"/>
 							<reference ref="703382890"/>
 							<reference ref="248086191"/>
-							<reference ref="272638481"/>
+							<reference ref="106166553"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -676,7 +677,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
-						<reference key="object" ref="272638481"/>
+						<reference key="object" ref="106166553"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</array>
@@ -783,7 +784,7 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
+			<real value="1280" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
