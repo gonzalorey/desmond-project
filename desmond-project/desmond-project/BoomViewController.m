@@ -51,7 +51,7 @@
 }
 
 -(NSString*)getRandomFunnyMessage{
-    NSMutableArray* messages = [[NSMutableArray alloc] initWithObjects:@"Justin Bieber will never sing again :(!",@"You have killed all the remaining Pandas", @"Are you a celebrating Mayan?", @"What about global warming and climate change?",@"You did not use enough duck tape",@"You won't get to see The Hobbit now",@"That's for mixing diet coke and mentos", nil];
+    NSMutableArray* messages = [[NSMutableArray alloc] initWithObjects:@"Justin Bieber will never sing again :(!",@"You have killed all the remaining Pandas", @"Are you Mayan?", @"And we thought it would be global warming and climate change",@"You did not use enough duck tape",@"You won't get to see The Hobbit now",@"That's for mixing diet coke and mentos",@"Don't worry we'll build a new one",@"(Awesome explosion)",@"Your friend got a higher score", nil];
     int size = [messages count];
     int index = arc4random() % size;
     return [messages objectAtIndex:index];
