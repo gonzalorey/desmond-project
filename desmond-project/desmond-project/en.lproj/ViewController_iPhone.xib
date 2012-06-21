@@ -342,7 +342,7 @@
 					<object class="IBUIButton" id="704219570">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{236, 400}, {64, 40}}</string>
+						<string key="NSFrame">{{195, 400}, {105, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -356,7 +356,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Help?</string>
+						<string key="IBUINormalTitle">Set reminders</string>
 						<reference key="IBUIHighlightedTitleColor" ref="140159065"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">2</int>
@@ -376,7 +376,7 @@
 					<object class="IBUILabel" id="840471531">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 400}, {196, 40}}</string>
+						<string key="NSFrame">{{0, 400}, {187, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="704219570"/>
@@ -611,12 +611,12 @@
 							<reference ref="622458261"/>
 							<reference ref="704219570"/>
 							<reference ref="665907682"/>
-							<reference ref="840471531"/>
 							<reference ref="838762392"/>
 							<reference ref="572084945"/>
 							<reference ref="703382890"/>
 							<reference ref="248086191"/>
 							<reference ref="316419615"/>
+							<reference ref="840471531"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

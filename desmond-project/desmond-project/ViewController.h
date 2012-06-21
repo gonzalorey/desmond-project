@@ -83,7 +83,6 @@
 - (void)initSound;
 - (void) updateRemaindersLabel;
 -(void)designButtons;
--(void)checkForAchievements;
 -(void)checkLifeAchievements;
 -(void)checkDeathAchievements;
 -(void)checkBuzzerAchievements;

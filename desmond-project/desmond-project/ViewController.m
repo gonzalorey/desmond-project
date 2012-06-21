@@ -126,12 +126,6 @@
     }
 }
 
--(void)checkForAchievements{
-    [self checkLifeAchievements];
-    [self checkDeathAchievements];
-
-}
-
 -(void)checkDeathAchievements
 {
     int deathMilestones[] = {5, 10, 25, 50, 100, 1000};
@@ -195,10 +189,12 @@
         [self checkBuzzerAchievements];
         [self nextLevel];
         AudioServicesPlaySystemSound(stillAliveSoundFileObject);
-    } else
+        [self checkLifeAchievements];
+    } else{
         [self endTheWorld];
-    
-    [self checkForAchievements];
+        [self checkDeathAchievements];
+    }
+
     return YES;
 }
 
