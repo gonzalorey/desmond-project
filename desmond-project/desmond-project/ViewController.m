@@ -16,7 +16,7 @@
 @implementation ViewController
 
 @synthesize  countdownLabel, codeTextField, countdownDate, levelsPassed, timer, resetViewShown, codeLabel, codeNameLabel, clearanceCode, promptLabel, topMessage, scoreLabel, invalidateTimer,
-    remindersLeftLabel, needHelpButton, deathToll;
+    remindersLeftLabel, needHelpButton, deathToll, animationDelegate, flipView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -290,6 +290,34 @@
     
     [self updateRemaindersLabel];
     [self designButtons];
+    [self initFlipviewAnimations];
+}
+
+-(void)initFlipviewAnimations{
+    animationDelegate = [[AnimationDelegate alloc] initWithSequenceType:kSequenceAuto directionType:kDirectionForward];
+    animationDelegate.controller = self;
+    animationDelegate.perspectiveDepth = 200;
+    
+    flipView = [[FlipView alloc] initWithAnimationType:kAnimationFlipVertical frame:CGRectMake(60,95,200,50)];
+    animationDelegate.transformView = flipView;
+    [self.view addSubview:flipView];
+    
+    flipView.fontSize = 36;
+    flipView.font = @"Helvetica Neue Bold";
+    flipView.fontAlignment = @"center";
+    flipView.textOffset = CGPointMake(0.0,2.0);
+    flipView.textTruncationMode = kCATruncationEnd;
+    
+    flipView.sublayerCornerRadius = 6.0f;
+    
+    [flipView printText:@"LOOP" usingImage:nil backgroundColor:[UIColor colorWithRed:0.9 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"A" usingImage:nil backgroundColor:[UIColor colorWithRed:0.75 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"IN" usingImage:nil backgroundColor:[UIColor colorWithRed:0.6 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"DATA" usingImage:nil backgroundColor:[UIColor colorWithRed:0.45 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"YOUR" usingImage:nil backgroundColor:[UIColor colorWithRed:0.3 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"THROUGH" usingImage:nil backgroundColor:[UIColor colorWithRed:0.15 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    [flipView printText:@"FLIP" usingImage:nil backgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1] textColor:[UIColor whiteColor]];
+    
 }
 
 -(void)designButtons{
@@ -349,6 +377,7 @@
 {
     self.codeTextField.text = @"";
     [super viewWillAppear:animated];
+    [self.animationDelegate startAnimation:kDirectionNone];
 
     
 }

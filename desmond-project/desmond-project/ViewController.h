@@ -11,6 +11,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "IAPHelper.h"
 #import "BoomViewController.h"
+#import "AnimationDelegate.h"
+#import "FlipView.h"
 
 @interface ViewController : UIViewController<UIAlertViewDelegate, GKLeaderboardViewControllerDelegate, UITextFieldDelegate,GKAchievementViewControllerDelegate>{
 
@@ -45,6 +47,8 @@
 	SystemSoundID	deathSoundFileObject;
     
     IBOutlet UIButton * needHelpButton;
+    AnimationDelegate * animationDelegate;
+    FlipView * flipView;
     bool buzzer;
 }
 
@@ -64,6 +68,8 @@
 @property(nonatomic, assign) int clearanceCode;
 @property(nonatomic, assign) Boolean invalidateTimer;
 @property(nonatomic, assign) int deathToll;
+@property(nonatomic, retain) AnimationDelegate * animationDelegate;
+@property(nonatomic, retain) FlipView * flipView;
 
 -(void)establishCountdown;
 -(void)startCountdown;
@@ -88,4 +94,5 @@
 -(void)checkBuzzerAchievements;
 -(void)milestoneLevelAchieved:(int)level;
 -(void)deathTollLevelAchieved:(int)level;
+-(void)initFlipviewAnimations;
 @end
