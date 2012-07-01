@@ -21,6 +21,11 @@
 		C006AE2215845CBF00112790 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2115845CBF00112790 /* AppDelegate.m */; };
 		C006AE2515845CBF00112790 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C006AE2415845CBF00112790 /* ViewController.m */; };
 		C006AE2815845CBF00112790 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C006AE2615845CBF00112790 /* ViewController_iPhone.xib */; };
+		C085A7C615A0E619005EB7B6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C085A7C515A0E619005EB7B6 /* QuartzCore.framework */; };
+		C085A7D515A0EB2E005EB7B6 /* AnimationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C085A7CE15A0EB2E005EB7B6 /* AnimationDelegate.m */; };
+		C085A7D615A0EB2E005EB7B6 /* AnimationFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = C085A7D015A0EB2E005EB7B6 /* AnimationFrame.m */; };
+		C085A7D715A0EB2E005EB7B6 /* FlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C085A7D215A0EB2E005EB7B6 /* FlipView.m */; };
+		C085A7D815A0EB2E005EB7B6 /* GenericAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C085A7D415A0EB2E005EB7B6 /* GenericAnimationView.m */; };
 		C08A9CEA15853A2800600439 /* blackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C08A9CCD15853A2800600439 /* blackButton.png */; };
 		C08A9CEB15853A2800600439 /* blackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C08A9CCE15853A2800600439 /* blackButton@2x.png */; };
 		C08A9CEC15853A2800600439 /* blackButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = C08A9CCF15853A2800600439 /* blackButtonHighlight.png */; };
@@ -90,6 +95,15 @@
 		C006AE2315845CBF00112790 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C006AE2415845CBF00112790 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C006AE2715845CBF00112790 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		C085A7C515A0E619005EB7B6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C085A7CD15A0EB2E005EB7B6 /* AnimationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationDelegate.h; sourceTree = "<group>"; };
+		C085A7CE15A0EB2E005EB7B6 /* AnimationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationDelegate.m; sourceTree = "<group>"; };
+		C085A7CF15A0EB2E005EB7B6 /* AnimationFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationFrame.h; sourceTree = "<group>"; };
+		C085A7D015A0EB2E005EB7B6 /* AnimationFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationFrame.m; sourceTree = "<group>"; };
+		C085A7D115A0EB2E005EB7B6 /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipView.h; sourceTree = "<group>"; };
+		C085A7D215A0EB2E005EB7B6 /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipView.m; sourceTree = "<group>"; };
+		C085A7D315A0EB2E005EB7B6 /* GenericAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericAnimationView.h; sourceTree = "<group>"; };
+		C085A7D415A0EB2E005EB7B6 /* GenericAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericAnimationView.m; sourceTree = "<group>"; };
 		C08A9CCD15853A2800600439 /* blackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButton.png; sourceTree = "<group>"; };
 		C08A9CCE15853A2800600439 /* blackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackButton@2x.png"; sourceTree = "<group>"; };
 		C08A9CCF15853A2800600439 /* blackButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackButtonHighlight.png; sourceTree = "<group>"; };
@@ -145,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C085A7C615A0E619005EB7B6 /* QuartzCore.framework in Frameworks */,
 				8B74CE4515850F19004D5564 /* AudioToolbox.framework in Frameworks */,
 				FC40B8C315846BEF00EF23D4 /* GameKit.framework in Frameworks */,
 				0034F326158486C3003C2C57 /* StoreKit.framework in Frameworks */,
@@ -188,6 +203,7 @@
 		C006AE1015845CBF00112790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C085A7C515A0E619005EB7B6 /* QuartzCore.framework */,
 				8B74CE4415850F19004D5564 /* AudioToolbox.framework */,
 				0034F325158486C2003C2C57 /* StoreKit.framework */,
 				FC40B8C115846BDD00EF23D4 /* GameKit.framework */,
@@ -228,6 +244,7 @@
 		C006AE1815845CBF00112790 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C085A7CC15A0EB2E005EB7B6 /* framework */,
 				FC9F574C15855ED9002CB5A3 /* goals_256.png */,
 				FC39122815853FE4007E0942 /* desmond-logo-114.png */,
 				FC39122615853FDC007E0942 /* desmond-logo-57.png */,
@@ -243,6 +260,21 @@
 				FC39120A158516E0007E0942 /* StoreCell.xib */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C085A7CC15A0EB2E005EB7B6 /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				C085A7CD15A0EB2E005EB7B6 /* AnimationDelegate.h */,
+				C085A7CE15A0EB2E005EB7B6 /* AnimationDelegate.m */,
+				C085A7CF15A0EB2E005EB7B6 /* AnimationFrame.h */,
+				C085A7D015A0EB2E005EB7B6 /* AnimationFrame.m */,
+				C085A7D115A0EB2E005EB7B6 /* FlipView.h */,
+				C085A7D215A0EB2E005EB7B6 /* FlipView.m */,
+				C085A7D315A0EB2E005EB7B6 /* GenericAnimationView.h */,
+				C085A7D415A0EB2E005EB7B6 /* GenericAnimationView.m */,
+			);
+			path = framework;
 			sourceTree = "<group>";
 		};
 		C08A9CCC15853A2800600439 /* buttons */ = {
@@ -393,6 +425,10 @@
 				C0F2A75A1584F2A60049E52D /* BoomViewController.m in Sources */,
 				FC39120615850ECA007E0942 /* MBProgressHUD.m in Sources */,
 				FC391209158516C8007E0942 /* StoreCell.m in Sources */,
+				C085A7D515A0EB2E005EB7B6 /* AnimationDelegate.m in Sources */,
+				C085A7D615A0EB2E005EB7B6 /* AnimationFrame.m in Sources */,
+				C085A7D715A0EB2E005EB7B6 /* FlipView.m in Sources */,
+				C085A7D815A0EB2E005EB7B6 /* GenericAnimationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
